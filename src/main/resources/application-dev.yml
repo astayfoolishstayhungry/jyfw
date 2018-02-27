@@ -1,0 +1,53 @@
+# server config
+server:
+  port: 8080
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jyfw_test?characterEncoding=utf8
+    username: root
+    password: 123456
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    filters: stat,wall,log4j
+    logSlowSql: true
+  #mybatis config
+  mybatis:
+    type-aliases-package: com.jyfw.jyfwser.pojo.entity
+  session:
+      store-type: none
+  #文件上传
+  http:
+      multipart:
+        max-file-size: 100Mb
+        max-request-size: 100Mb
+  # 模板引擎的配置
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
+  resources:
+    static-locations: classpath:static/,file:static/
+  #redis:
+  #  host: localhost
+  #  port: 6379
+  #  pool:
+  #    max-idle: 8
+  #    min-idle: 0
+  #    max-active: 8
+  #    max-wait: -1
+  #

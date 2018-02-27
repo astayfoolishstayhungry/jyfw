@@ -68,19 +68,14 @@ public class DruidConfig {
     @Value("${spring.datasource.filters}")
     private String filters;
 
-    @Value("${druid.monitor.login.username}")
-    private String druidLoginUserName;
-
-    @Value("${druid.monitor.login.passowrd}")
-    private String druidLoginPassword;
-
     @Bean
     public ServletRegistrationBean druidServlet() {
         ServletRegistrationBean reg = new ServletRegistrationBean();
         reg.setServlet(new StatViewServlet());
         reg.addUrlMappings("/admin/druid/*");
-        reg.addInitParameter("loginUsername", druidLoginUserName);
-        reg.addInitParameter("loginPassword", druidLoginPassword);
+        //druid后台监控账号密码
+        reg.addInitParameter("loginUsername", "lulu");
+        reg.addInitParameter("loginPassword", "lulu");
         return reg;
     }
 
