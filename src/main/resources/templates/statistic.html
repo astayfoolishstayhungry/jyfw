@@ -1,168 +1,169 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8" />
-        <title>Office</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+<head>
+    <meta charset="utf-8"/>
+    <title>Office</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="css/bootstrap.css" />
-        <link rel="stylesheet" href="css/font-awesome.min.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/animate.min.css" />
-        <link rel="stylesheet" type="text/css" media="all" href="css/style-projects.css" />
-        
-
-        <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="assets/ico/favicon.ico" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png" />
-    </head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style-projects.css"/>
 
 
-    <body>
-
-    <!-- Header -->
-        
-    <nav id="navbar-section" class="navbar navbar-default navbar-static-top navbar-sticky" role="navigation">
-        <div class="container">
-        
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                    <span class="sr-only">菜单</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand wow fadeInDownBig" href="index.html"><img src="images/slider/Office.png" width="100" alt="Office" /></a>
-            </div>
-        
-            <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav pull-right">
-                    <li>
-                        <a href="index.html">首页</a>
-                    </li>
-                    <li>
-                        <a href="demand.html">需求社区</a>
-                    </li>
-                    <li>
-                        <a href="news.html">新闻资讯</a>
-                    </li>
-                    <li class="active">
-                        <a href="statistic.html">交易数据</a>
-                    </li>
-                    <li th:if="!${userLogin}">
-                        <a href="login.html"><span>登录</span></a>
-                    </li>
-                    <li th:if="${userLogin}">
-                        <a href="login.html">欢迎！<span th:text="${user.name}"></span></a>
-                    </li>
-                </ul>         
-            </div>
-        </div>
-    </nav>
-
-    <div class="row container-kamn">  
-        <img src="images/slider/slide9.jpg" width="100%" class="blog-post" alt="Feature-img" align="right" />
-    </div>
-
-    <!--End Header -->
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png"/>
+</head>
 
 
-    <!-- Main Container -->
+<body>
 
-    <div id="banners"></div>
+<!-- Header -->
+
+<nav id="navbar-section" class="navbar navbar-default navbar-static-top navbar-sticky" role="navigation">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="blockquote-box blockquote-info animated wow fadeInLeft clearfix">
-                    <div class="square pull-left">
-                        <img src="images/team/member2.png" alt="Feature-img" height="80" width="100" />
-                    </div>
-                    <h4>
-                        John Doe
-                    </h4>
-                    <p>
-                        Web Developer , Technext
-                    </p>
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-responsive-collapse">
+                <span class="sr-only">菜单</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand wow fadeInDownBig" href="index.html"><img src="images/slider/Office.png" width="100"
+                                                                             alt="Office"/></a>
+        </div>
+
+        <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="index.html">首页</a>
+                </li>
+                <li>
+                    <a href="demand.html">需求社区</a>
+                </li>
+                <li>
+                    <a href="news.html">新闻资讯</a>
+                </li>
+                <li class="active">
+                    <a href="statistic.html">交易数据</a>
+                </li>
+                <li th:if="!${userLogin}">
+                    <a href="login.html"><span>登录</span></a>
+                </li>
+                <li th:if="${userLogin}">
+                    <a href="login.html">欢迎！<span th:text="${user.name}"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="row container-kamn">
+    <img src="images/slider/slide9.jpg" width="100%" class="blog-post" alt="Feature-img" align="right"/>
+</div>
+
+<!--End Header -->
+
+
+<!-- Main Container -->
+
+<div id="banners"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="blockquote-box blockquote-info animated wow fadeInLeft clearfix">
+                <div class="square pull-left">
+                    <img src="images/team/member2.png" alt="Feature-img" height="80" width="100"/>
                 </div>
-                <div class="blockquote-box blockquote-primary animated wow fadeInLeft clearfix">
-                    <div class="square pull-left">
-                        <img src="images/team/member1.png" alt="Feature-img" height="80" width="100" />
-                    </div>
-                    <h4>
-                        Jane Ley
-                    </h4>
-                    <p>
-                        Software Developer , Technext
-                    </p>
-                </div>
-                <div class="blockquote-box blockquote-success animated wow fadeInLeft clearfix">
-                    <div class="square pull-left">
-                        <img src="images/team/member2.png" alt="Feature-img" height="80" width="100" />
-                    </div>
-                    <h4>
-                        Jany Doe
-                    </h4>
-                    <p>
-                        App Developer , Technext
-                    </p>
-                </div>
+                <h4>
+                    John Doe
+                </h4>
+                <p>
+                    Web Developer , Technext
+                </p>
             </div>
-            <div class="col-md-6">
-                <div class="blockquote-box blockquote-danger animated wow fadeInRight clearfix">
-                    <div class="square pull-left">
-                        <img src="images/team/member3.png" alt="Feature-img" height="80" width="100" />
-                    </div>
-                    <h4>
-                        John Doe
-                    </h4>
-                    <p>
-                        Android Developer , Technext
-                    </p>
+            <div class="blockquote-box blockquote-primary animated wow fadeInLeft clearfix">
+                <div class="square pull-left">
+                    <img src="images/team/member1.png" alt="Feature-img" height="80" width="100"/>
                 </div>
-                <div class="blockquote-box blockquote-warning animated wow fadeInRight clearfix">
-                    <div class="square pull-left">
-                        <img src="images/team/member2.png" alt="Feature-img" height="80" width="100" />
-                    </div>
-                    <h4>
-                        Chris Way
-                    </h4>
-                    <p>
-                        iOS Developer , Technext
-                    </p>
+                <h4>
+                    Jane Ley
+                </h4>
+                <p>
+                    Software Developer , Technext
+                </p>
+            </div>
+            <div class="blockquote-box blockquote-success animated wow fadeInLeft clearfix">
+                <div class="square pull-left">
+                    <img src="images/team/member2.png" alt="Feature-img" height="80" width="100"/>
                 </div>
-                <div class="blockquote-box animated wow fadeInRight clearfix">
-                    <div class="square pull-left">
-                        <img src="images/team/member1.png" alt="Feature-img" height="80" width="100" />
-                    </div>
-                    <h4>
-                        Christopher
-                    </h4>
-                    <p>
-                        Web Developer , Technext
-                    </p>
+                <h4>
+                    Jany Doe
+                </h4>
+                <p>
+                    App Developer , Technext
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="blockquote-box blockquote-danger animated wow fadeInRight clearfix">
+                <div class="square pull-left">
+                    <img src="images/team/member3.png" alt="Feature-img" height="80" width="100"/>
                 </div>
+                <h4>
+                    John Doe
+                </h4>
+                <p>
+                    Android Developer , Technext
+                </p>
+            </div>
+            <div class="blockquote-box blockquote-warning animated wow fadeInRight clearfix">
+                <div class="square pull-left">
+                    <img src="images/team/member2.png" alt="Feature-img" height="80" width="100"/>
+                </div>
+                <h4>
+                    Chris Way
+                </h4>
+                <p>
+                    iOS Developer , Technext
+                </p>
+            </div>
+            <div class="blockquote-box animated wow fadeInRight clearfix">
+                <div class="square pull-left">
+                    <img src="images/team/member1.png" alt="Feature-img" height="80" width="100"/>
+                </div>
+                <h4>
+                    Christopher
+                </h4>
+                <p>
+                    Web Developer , Technext
+                </p>
             </div>
         </div>
     </div>
-    <!--End Main Container -->
-    
-    <div class="copyright text center">
-        <p>&copy; Copyright 2018, <a href="#">Your Website Link</a>. About 交易服务 - Collect from <a href="#" title="消息来源" target="_blank">消息来源</a></p>
-    </div>
+</div>
 
-    
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script>
-      new WOW().init();
-    </script>
+<div class="copyright text center">
+    <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
+    <p>作者：140104300123 陈璐</p>
+</div>
 
-  </body>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+
+</body>
 </html>

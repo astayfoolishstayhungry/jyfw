@@ -2,26 +2,22 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Office</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/animate.min.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/style-projects.css" />
-
-
-    <!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="assets/ico/favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="交易服务"/>
+    <meta name="author" content="陈璐"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style-projects.css"/>
+    <link href="css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="assets/ico/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png"/>
 </head>
 
 
@@ -33,13 +29,15 @@
     <div class="container">
 
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-responsive-collapse">
                 <span class="sr-only">菜单</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand animated fadeInDownBig" href="index.html"><img src="images/slider/Office.png" width="100" alt="Office" /></a>
+            <a class="navbar-brand animated fadeInDownBig" href="index.html"><img src="images/slider/Office.png"
+                                                                                  width="100" alt="Office"/></a>
         </div>
 
         <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
@@ -72,8 +70,8 @@
 <div class="container-fluid-kamn">
     <div class="row">
         <div>
-            <img src="images/slider/slide10.jpg" class="blog-post" alt="Feature-img" align="right" width="100%" />
-            <br />
+            <img src="images/slider/slide10.jpg" class="blog-post" alt="Feature-img" align="right" width="100%"/>
+            <br/>
         </div>
         <div class="col-lg-4 col-lg-offset-1">
 
@@ -82,34 +80,36 @@
             <div class="feedback-form">
 
                 <div id="contact-response"></div>
-                <form th:action="@{/registerUser}" th:object="${user}" th:method="post">
+                <form id="registerForm" th:action="@{/registerUser}" th:object="${user}" th:method="post">
                     <div class="form-group">
                         <label>账号</label>
-                        <input type="text" class="form-control" th:field="*{name}" placeholder="请输入账号" />
+                        <input type="text" name="username" class="form-control" th:field="*{name}" placeholder="请输入账号"/>
                     </div>
                     <div class="form-group">
                         <label>手机号</label>
-                        <input type="text" class="form-control" th:field="*{phone}" placeholder="请输入手机号" />
+                        <input type="text" name="phone" class="form-control" th:field="*{phone}" placeholder="请输入手机号"/>
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input type="password" class="form-control" th:field="*{password}" placeholder="请输入密码" />
+                        <input type="password" name="password" class="form-control" th:field="*{password}" placeholder="请输入密码"/>
                     </div>
                     <div class="form-group">
                         <label>确认密码</label>
-                        <input type="password" class="form-control" placeholder="请重新输入密码" />
+                        <input type="password" name="confirmPassword" class="form-control" placeholder="请重新输入密码"/>
                     </div>
                     <div class="form-group">
                         <label>验证码</label>
-                        <img alt="验证码" onclick = "this.src='getValidatorImg?d='+new Date()*1" src="getValidatorImg" />
+                        <img alt="验证码" onclick="this.src='getValidatorImg?d='+new Date()*1" src="getValidatorImg"/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="imgValidatorCode" placeholder="请输入验证码" />
+                        <input type="text" class="form-control" name="imgValidatorCode" placeholder="请输入验证码"/>
                         <span class="label label-danger" th:text="${info}"></span>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-default">注册</button>
-                        <a href="login.html"><button type="button" class="btn">已有账号</button></a>
+                        <a href="login.html">
+                            <button type="button" class="btn">已有账号</button>
+                        </a>
                     </div>
                 </form>
             </div>
@@ -117,19 +117,96 @@
     </div>
 </div>
 
-<!--End Main Container -->
-
 <div class="copyright text center">
-    <p>&copy; Copyright 2018, <a href="#">Your Website Link</a>. About 交易服务 - Collect from <a href="#" title="消息来源" target="_blank">消息来源</a></p>
+    <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
+    <p>作者：140104300123 陈璐</p>
 </div>
 
-
-
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
 <script>
     new WOW().init();
+</script>
+<!-- 表单验证 -->
+<script type="text/javascript">
+    $('#registerForm').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                validators: {
+                    notEmpty: {
+                        message: "用户名不能为空"
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 24,
+                        message: '用户名长度在6到24位之间'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: '手机号码不能为空'
+                    },
+                    stringLength: {
+                        min: 11,
+                        max: 11,
+                        message: '请输入11位手机号码'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: "密码不能为空"
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 24,
+                        message: '密码长度在6到24之间'
+                    },
+                    different: {
+                        field: 'username',
+                        message: '密码不能和用户名相同'
+                    }
+                }
+            },
+            confirmPassword: {
+                validators: {
+                    notEmpty: {
+                        message: "确认密码不能为空"
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 24,
+                        message: '密码长度在6到24之间'
+                    },
+                    identical: {
+                        field: 'password',
+                        message: '两次密码不同，请重新输入'
+                    }
+                }
+            },
+            imgValidatorCode : {
+                validators: {
+                    notEmpty: {
+                        message: "验证码不能为空"
+                    }
+                }
+            }
+        }
+    });
+    /*$('#registerBtn').click(function () {
+        $('#registerBtn').bootstrapValidator('validate');
+    });*/
 </script>
 
 </body>
