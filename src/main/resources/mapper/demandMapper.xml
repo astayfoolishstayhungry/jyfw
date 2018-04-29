@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jyfw.jyfwser.mapper.DemandMapper">
+
+
+    <insert id="addDemand" parameterType="com.jyfw.jyfwser.pojo.entity.DemandEntity" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO `demand` (
+	      `uid`,`dealTime`,`dealObject`,`dealNum`,`dealPrice`,`status`,`desc`
+        ) VALUES	(
+          #{uid},#{dealTime},#{dealObject},#{dealNum},#{dealPrice},#{status},#{desc}
+        );
+    </insert>
+
+    <select id="listDemandByStatus" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.DemandEntity">
+        SELECT * FROM `demand` WHERE `status` = #{status};
+    </select>
+
+
+</mapper>

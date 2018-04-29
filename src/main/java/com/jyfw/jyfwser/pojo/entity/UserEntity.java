@@ -5,7 +5,6 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * @author: lulu
  * @description: 用户实体
  * @date: created in 0:35 2018/2/27
  */

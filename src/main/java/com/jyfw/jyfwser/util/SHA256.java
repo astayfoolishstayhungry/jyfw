@@ -5,7 +5,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @author: lulu
  * @description: 利用java原生的摘要实现SHA256加密
  * @date: created in 14:37 2018/2/27
  */

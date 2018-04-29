@@ -4,7 +4,6 @@ import com.jyfw.jyfwser.pojo.entity.UserEntity;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * @author: chunxiao
  * @description: 用户相关dao
  * @date: created in 0:41 2018/2/27
  */

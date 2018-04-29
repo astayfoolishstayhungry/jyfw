@@ -11,13 +11,8 @@
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" media="all" href="css/style-projects.css"/>
     <link href="css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="assets/ico/favicon.ico"/>
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png"/>
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png"/>
 </head>
 
 <body>
@@ -33,9 +28,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand animated fadeInDownBig" href="index.html"><img src="images/slider/Office.png"
-                                                                                  width="100" alt="Office"/></a>
         </div>
+
+        <!-- 网站名 -->
+        <a class="navbar-brand" href="#">金融远期合约交易服务平台</a>
 
         <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav pull-right">
@@ -66,7 +62,7 @@
             <br/>
         </div>
         <div class="col-lg-4 col-lg-offset-1">
-
+            <h3><span th:text="${errorInfo}"></span></h3>
         </div>
         <div class="col-lg-5">
             <div class="feedback-form">

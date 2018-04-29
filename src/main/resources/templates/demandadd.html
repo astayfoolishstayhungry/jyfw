@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>金融远期合约交易服务平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/home.css" />
+    <link href="css/mobiscroll.custom.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav id="navbar-section" class="navbar navbar-default navbar-static-top navbar-sticky" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-responsive-collapse">
+                <span class="sr-only">菜单</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- 网站名 -->
+        <a class="navbar-brand" href="#">金融远期合约交易服务平台</a>
+
+        <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="index.html">首页</a>
+                </li>
+                <li>
+                    <a href="demand.html">需求社区</a>
+                </li>
+                <li>
+                    <a href="news.html">新闻资讯</a>
+                </li>
+                <li>
+                    <a href="statistic.html">交易数据</a>
+                </li>
+                <li th:if="${user == null}">
+                    <a href="login.html"><span>登录</span></a>
+                </li>
+                <li th:if="!${user == null}" class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">欢迎！<span th:text="${user.name}"></span><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/mydemand">我的合约</a></li>
+                        <li><a href="#">我的订单</a></li>
+                        <li><a href="#">积分商城</a></li>
+                        <li><a href="/logout">安全退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<section class="aui-content">
+    <div style="height:20px;"></div>
+    <div class="aui-content-up">
+        <form id="demandForm" th:action="@{/demandadd}" th:object="${demand}" th:method="post" enctype="multipart/form-data">
+            <div class="aui-content-up-form">
+                <h2>发布我的预交易合约</h2>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    交易时间 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" th:field="*{dealTime}" class="aui-form-control-two" id="timePicker" required="required" placeholder="请输入交易时间"/>
+                    <span class="tips" id="divname">请输入交易时间</span>
+                </div>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    交易对象 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" th:field="*{dealObject}" class="aui-form-control-two" placeholder="请输入交易对象" required="required"/>
+                    <span class="tips">请输入交易对象</span>
+                </div>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    交易数量 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="number" th:field="*{dealNum}" class="aui-form-control-two" placeholder="请输入交易数量" required="required"/>
+                    <span class="tips">请输入交易数量</span>
+                </div>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    交易价格 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="number" th:field="*{dealPrice}" class="aui-form-control-two" placeholder="请输入交易价格" required="required"/>
+                    <span class="tips" id="phone">请输入交易价格</span>
+                </div>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    具体描述 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <textarea  th:field="*{desc}" class="aui-form-control" minlength="5">请用简短的文字描述您的合约产品</textarea>
+                </div>
+            </div>
+            <div class="aui-form-group-text">
+                <span th:text="${errorInfo}"></span>
+                <h3>温馨提示</h3>
+                <p>为了使您能够体验更好的本平台服务，禁止发布虚假内容。</p>
+            </div>
+            <div class="aui-btn-default">
+                <button class="aui-btn aui-btn-account">提交</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/up.js"></script>
+<script type="text/javascript" src="js/mobiscroll.custom.min.js"></script>
+<script>
+    var theme = "ios";
+    var mode = "scroller";
+    var display = "bottom";
+    var lang="zh";
+    $('#timePicker').mobiscroll().date({
+        theme: theme,
+        mode: mode,
+        display: display,
+        lang: lang
+    });
+</script>
+</body>
+</html>

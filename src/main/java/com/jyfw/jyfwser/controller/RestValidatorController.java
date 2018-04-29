@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 
 /**
- * @author: lulu
  * @description: 验证码
  * @date: created in 14:00 2018/2/27
  */

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import java.util.Properties;
 
 /**
- * @author: lulu
  * @description: 验证码config
  * @date: created in 14:01 2018/2/27
  */

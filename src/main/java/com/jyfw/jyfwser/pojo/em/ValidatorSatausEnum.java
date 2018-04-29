@@ -1,7 +1,6 @@
 package com.jyfw.jyfwser.pojo.em;
 
 /**
- * @author: lulu
  * @description: 验证状态枚举类型
  * @date: created in 14:32 2018/2/27
  */

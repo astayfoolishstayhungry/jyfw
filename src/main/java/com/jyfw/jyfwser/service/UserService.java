@@ -3,7 +3,6 @@ package com.jyfw.jyfwser.service;
 import com.jyfw.jyfwser.pojo.entity.UserEntity;
 
 /**
- * @author: chunxiao
  * @description: 用户服务相关接口
  * @date: created in 0:49 2018/2/27
  */

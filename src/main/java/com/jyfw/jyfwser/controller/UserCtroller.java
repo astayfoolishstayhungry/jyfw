@@ -6,6 +6,7 @@ import com.jyfw.jyfwser.service.UserService;
 import com.jyfw.jyfwser.util.SHA256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 /**
- * @author: lulu
  * @description: 用户控制器
  * @date: created in 14:03 2018/2/27
  */
@@ -55,7 +55,6 @@ public class UserCtroller {
             }catch (Exception e) {
                 System.out.println("用户注册失败..." + e);
             }
-            modelAndView.addObject("userLogin", "true");
             modelAndView.addObject("user", user);
 
             modelAndView.setViewName("redirect:/index");
@@ -81,11 +80,16 @@ public class UserCtroller {
                 modelAndView.setViewName("redirect:/login");
             }else {
                 session.setAttribute("user", user);
-                modelAndView.addObject("userLogin", "true");
                 modelAndView.setViewName("redirect:/index");
             }
         }
         return modelAndView;
+    }
+
+    @GetMapping(value = "/logout")
+    public ModelAndView logout(HttpSession session) {
+        session.removeAttribute("user");
+        return new ModelAndView("redirect:/index");
     }
 
 }
