@@ -3,10 +3,12 @@ package com.jyfw.jyfwser.service.impl;
 import com.jyfw.jyfwser.mapper.DemandMapper;
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
 import com.jyfw.jyfwser.service.DemandService;
+import com.jyfw.jyfwser.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +31,10 @@ public class DemandServiceImpl implements DemandService {
     @Override
     public List<DemandEntity> listDemandByStatus(Integer status) {
         List<DemandEntity> demands = demandMapper.listDemandByStatus(status);
+        for (DemandEntity demand : demands) {
+            Date dealTime = demand.getDealTime();
+//            demand.setDealTimeFormat(TimeUtil.DateFormat(dealTime));
+        }
         return demands;
     }
 }

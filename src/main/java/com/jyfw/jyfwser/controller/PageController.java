@@ -1,17 +1,26 @@
 package com.jyfw.jyfwser.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.jyfw.jyfwser.pojo.Const;
 import com.jyfw.jyfwser.pojo.em.DemandStatusEnum;
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
 import com.jyfw.jyfwser.pojo.entity.UserEntity;
+import com.jyfw.jyfwser.pojo.vo.JuHeData;
+import com.jyfw.jyfwser.pojo.vo.JuHeResult;
+import com.jyfw.jyfwser.pojo.vo.NewsVO;
 import com.jyfw.jyfwser.service.DemandService;
+import com.jyfw.jyfwser.util.http.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,6 +77,12 @@ public class PageController {
         if(null != user) {
             modelAndView.addObject("user", user);
         }
+        String data = HttpUtils.sendGet(Const.JUHE_CAIJING_NEWS_API);
+        JuHeData juHeData = JSONObject.parseObject(data, JuHeData.class);
+        JuHeResult juheNews = juHeData.getResult();
+        List<NewsVO> news = new ArrayList<>();
+        news = juheNews.getData();
+        modelAndView.addObject("news", news);
         modelAndView.setViewName("news");
         return modelAndView;
     }

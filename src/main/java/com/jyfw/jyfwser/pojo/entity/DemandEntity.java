@@ -14,6 +14,7 @@ public class DemandEntity {
     private Integer id;
     private Integer uid;
     private Date dealTime;
+    private String dealTimeFormat;
     private String dealObject;
     private Integer dealNum;
     private Integer dealPrice;
