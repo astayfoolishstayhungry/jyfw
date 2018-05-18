@@ -1,0 +1,17 @@
+.demand-item-list {
+    float: left;
+    border: 1px solid #5e5e5e;
+    background: #fff;
+    padding: 22px 8px 24px 36px;
+    margin-bottom: 20px;
+    height: 107px;
+    width: 1154px;
+}
+
+.demand-item-title {
+
+}
+
+.demand-hot-icon {
+    margin-left: 6px;
+}

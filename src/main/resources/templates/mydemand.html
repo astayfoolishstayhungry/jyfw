@@ -79,11 +79,11 @@
     <p class="bg-info"><span th:text="${saveInfo}"></span></p>
 
     <div class="collapse-card" th:each="demand, demandStat : ${savedDemands}">
-        <div class="collapse-card__heading">
+        <div class="collapse-card__heading"  style="background: #ffffff;">
             <span th:text="${demand.dealTimeFormat}"></span> -- <span th:text="${demand.dealObject}"></span><p></p>
             <span th:text="${demand.dealNum}"></span> -- <span th:text="${demand.dealPrice}"></span>
         </div>
-        <div class="collapse-card__body">
+        <div class="collapse-card__body" style="background: #ffffff;">
             <span th:text="${demand.desc}"></span>
         </div>
     </div>

@@ -9,6 +9,7 @@ import com.jyfw.jyfwser.pojo.vo.JuHeData;
 import com.jyfw.jyfwser.pojo.vo.JuHeResult;
 import com.jyfw.jyfwser.pojo.vo.NewsVO;
 import com.jyfw.jyfwser.service.DemandService;
+import com.jyfw.jyfwser.util.DateUtil;
 import com.jyfw.jyfwser.util.http.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -121,6 +122,9 @@ public class PageController {
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
             List<DemandEntity> savedDemands = demandService.listDemandByStatus(DemandStatusEnum.UNVALIDATOR.getCode());
+            for (DemandEntity demand : savedDemands) {
+                demand.setDealTimeFormat(DateUtil.parseDateToStr(demand.getDealTime(), DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
+            }
             //TODO 列举其他状态的需求
             modelAndView.addObject("savedDemands", savedDemands);
             modelAndView.addObject("user", user);

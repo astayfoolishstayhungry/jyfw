@@ -128,8 +128,6 @@ float: right;
     margin-top: 80px;
 }
 
-
-
 .white-text{
     font-style: italic;
     color: white;
@@ -138,8 +136,7 @@ float: right;
 body {
     font-size: 15px;
     line-height: 24px;
-    background:#F8FAFF;
-
+    background: #F5F5F5;
 }
 
 a {
@@ -275,7 +272,7 @@ address {
     margin-bottom: 10px;
 }
 #banner-home{
-    background-image:url('../img/slider/1.jpg');
+    background-image:url('../images/slider/1.jpg');
     height:350px;
     margin-bottom: 30px;
     padding-top: 120px;
@@ -284,7 +281,7 @@ address {
 @media (min-width: 100px) and (max-width: 800px) {
 
     #banner-home{
-    background-image:url('../img/slider/1.jpg');
+    background-image:url('../images/slider/1.jpg');
     height:450px;
     margin-bottom: 30px;
     }
@@ -748,9 +745,5 @@ footer h3 {
       margin: 20px 0;
       padding-top: 9px;
       overflow: hidden;
-  }
-  .main-data span {
-      float: left;
-      margin-right: 30px;
   }
 }
