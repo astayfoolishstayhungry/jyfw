@@ -28,12 +28,15 @@ public class DemandController {
         demand.setUid(user.getUid());
         demand.setStatus(DemandStatusEnum.UNVALIDATOR.getCode());
         Integer id = demandService.addDemand(demand);
+        if(null != user) {
+            modelAndView.addObject("user", user);
+        }
         if(null == id) {
             modelAndView.addObject("errorInfo", "系统内部错误");
             modelAndView.setViewName("demandadd");
         }
         modelAndView.addObject("saveInfo", "亲，系统已为您保存，请核对后点击发布~");
-        modelAndView.setViewName("mydemand");
+        modelAndView.setViewName("redirect:/mydemand");
         return modelAndView;
     }
 

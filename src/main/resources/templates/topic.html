@@ -2,19 +2,14 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-    <title>金融远期合约交易服务平台</title>
+    <title>金融远期合约交易平台-需求交易</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta name="description" content="金融远期合约交易平台"/>
+    <meta name="author" content="CL"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/animate.min.css"/>
-    <link rel="shortcut icon" href="images/ico/favicon.ico"/>
-    <link rel="stylesheet" href="css/buttons.css"/>
-    <!--以下必要样式-->
-    <link rel="stylesheet" href="css/paper-collapse.min.css"/>
-
+    <link rel="stylesheet" href="css/demand.css" />
 </head>
 
 <body>
@@ -25,7 +20,7 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target=".navbar-responsive-collapse">
-                <span class="sr-only">菜单</span>
+                <span class="sr-only">响应式导航栏</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -40,23 +35,24 @@
                 <li>
                     <a href="index.html">首页</a>
                 </li>
-
                 <li>
                     <a href="news.html">新闻资讯</a>
                 </li>
                 <li>
                     <a href="demand.html">需求社区</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="topic.html">话题中心</a>
                 </li>
+
                 <li>
                     <a href="statistic.html">交易数据</a>
                 </li>
+
                 <li th:if="${user == null}">
                     <a href="login.html"><span>登录</span></a>
                 </li>
-                <li th:if="!${user == null}" class="dropdown active">
+                <li th:if="!${user == null}" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">欢迎！<span th:text="${user.name}"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -70,42 +66,55 @@
     </div>
 </nav>
 
-<div class="row container-kamn">
-    <img src="images/slider/slide9.jpg" width="100%" class="blog-post" alt="Feature-img" align="right"/>
+<div class="container">
+    <div class="jyfw-section">
+        <h3 class="jyfw-title">话题中心<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span></h3>
+        <div class="block"></div>
+    </div>
 </div>
 
-<div class="container text-center">
-    <span class="button-wrap">
-        <a href="/demandadd" class="button button-pill button-raised button-primary">发布金融交易合约</a>
-    </span>
-    <div id="banners"></div>
-    <p class="bg-info"><span th:text="${saveInfo}"></span></p>
+<div class="container">
+    <div class="demand-item-list">
+        <p class="demand-item-title">合约名称<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span></p>
+        <div class="row">
+            <div class="col-md-2">
+                <p class="demand-item-detail">合约标的</p>
+            </div>
+            <div class="col-md-2">
+                <p class="demand-item-detail">交易数量</p>
+            </div>
+            <div class="col-md-2">
+                <p class="demand-item-detail">交易价格</p>
+            </div>
+            <div class="col-md-2">
+                <p class="demand-item-detail">交易日期</p>
+            </div>
+            <div class="col-md-2">
+                <p class="demand-item-detail">合约状态</p>
+            </div>
+            <div class="col-md-2">
+                <p class="demand-item-detail">合约详情</p>
+            </div>
 
-    <div class="collapse-card" th:each="demand, demandStat : ${savedDemands}">
-        <div class="collapse-card__heading"  style="background: #ffffff;">
-            <span th:text="${demand.dealTimeFormat}"></span> -- <span th:text="${demand.dealObject}"></span><p></p>
-            <span th:text="${demand.dealNum}"></span> -- <span th:text="${demand.dealPrice}"></span>
-        </div>
-        <div class="collapse-card__body" style="background: #ffffff;">
-            <span th:text="${demand.desc}"></span>
         </div>
     </div>
 
 </div>
 
+<div id="banners"></div>
 
-<div class="copyright text-center" style="margin-top: 30px;">
+
+<div class="copyright text center">
     <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
     <p>作者：140104300123 陈璐</p>
 </div>
 
+
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/wow.min.js"></script>
-<script type="text/javascript" src="js/paper-collapse.min.js"></script>
-<script type="text/javascript">
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script>
     new WOW().init();
-    $('.collapse-card').paperCollapse();
 </script>
 
 </body>

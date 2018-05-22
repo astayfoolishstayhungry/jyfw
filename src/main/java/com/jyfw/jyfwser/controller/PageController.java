@@ -12,11 +12,9 @@ import com.jyfw.jyfwser.service.DemandService;
 import com.jyfw.jyfwser.util.DateUtil;
 import com.jyfw.jyfwser.util.http.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,8 +63,14 @@ public class PageController {
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user) {
             modelAndView.addObject("user", user);
+            //获取需求列表
+            demandService.listDemandByStatus(null);
+            modelAndView.setViewName("demand");
+        }else {
+            modelAndView.addObject("errorInfo","请先登录！");
+            modelAndView.setViewName("login");
         }
-        modelAndView.setViewName("demand");
+
         return modelAndView;
     }
 
@@ -136,6 +140,26 @@ public class PageController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/mycontact")
+    public ModelAndView getMyContactPage(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user ) {
+            List<DemandEntity> savedDemands = demandService.listDemandByStatus(DemandStatusEnum.UNVALIDATOR.getCode());
+            for (DemandEntity demand : savedDemands) {
+                demand.setDealTimeFormat(DateUtil.parseDateToStr(demand.getDealTime(), DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
+            }
+            //TODO 列举其他状态的需求
+            modelAndView.addObject("savedDemands", savedDemands);
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("mycontact");
+        }else {
+            modelAndView.addObject("errorInfo","请先登录！");
+            modelAndView.setViewName("login");
+        }
+        return modelAndView;
+    }
+
     @GetMapping(value = "/demandadd")
     public ModelAndView getContractPage(Model model, HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
@@ -144,6 +168,66 @@ public class PageController {
         if(null != user) {
             modelAndView.addObject("user", user);
             modelAndView.setViewName("demandadd");
+        }else {
+            modelAndView.addObject("errorInfo","请先登录！");
+            modelAndView.setViewName("login");
+        }
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/topicadd")
+    public ModelAndView getTopicAdd(Model model, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user ) {
+            model.addAttribute("demand", new DemandEntity());
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("topicadd");
+        }else {
+            modelAndView.addObject("errorInfo","请先登录！");
+            modelAndView.setViewName("login");
+        }
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/mypage")
+    public ModelAndView getMyPage(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user ) {
+
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("mypage");
+        }else {
+            modelAndView.addObject("errorInfo","请先登录！");
+            modelAndView.setViewName("login");
+        }
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/mytopic")
+    public ModelAndView getMyTopic(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user ) {
+
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("mytopic");
+        }else {
+            modelAndView.addObject("errorInfo","请先登录！");
+            modelAndView.setViewName("login");
+        }
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/topic")
+    public ModelAndView getTopic(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user ) {
+
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("topic");
         }else {
             modelAndView.addObject("errorInfo","请先登录！");
             modelAndView.setViewName("login");
