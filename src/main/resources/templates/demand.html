@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/demand.css" />
+    <link rel="stylesheet" href="css/demand.css"/>
 </head>
 
 <body>
@@ -68,18 +68,25 @@
 
 <div class="container" style="padding-left: 30px;">
     <div class="jyfw-section row">
-        <div class="col-md-10">
+        <div class="col-md-3">
             <h3 class="jyfw-title">需求列表 <span class="demand-hot-icon glyphicon glyphicon-hand-right"></span></h3>
             <div class="block"></div>
         </div>
+        <div class="col-md-4">
+            <div class="input-group row" style="height: 60px;">
+                <input type="text" class="form-control" id="dealObject" placeholder="请输入标的名称" style="margin-top: 20px;"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-primary btn-search" style="margin-top: 14px;">查找</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
         <div class="col-md-2">
             <a href="demandadd.html" class="jyfw-section">
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <div  style="padding-top: 18px;">
+                <div style="padding-top: 18px;">
                     <button type="button" class="btn btn-primary">发布需求</button>
                 </div>
-
-                </a>
+            </a>
         </div>
     </div>
 
@@ -90,25 +97,24 @@
         <p class="demand-item-title">合约名称<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span></p>
         <div class="row">
             <div class="col-md-2">
-                <p class="demand-item-detail">合约标的</p>
+                <p class="demand-item-detail">合约标的</p><span>你好</span>
             </div>
             <div class="col-md-2">
-                <p class="demand-item-detail">交易数量</p>
+                <p class="demand-item-detail">交易数量</p><span>你好</span>
             </div>
             <div class="col-md-2">
-                <p class="demand-item-detail">交易价格</p>
+                <p class="demand-item-detail">交易价格</p><span>你好</span>
             </div>
             <div class="col-md-2">
-                <p class="demand-item-detail">交易日期</p>
+                <p class="demand-item-detail">交易日期</p><span>你好</span>
             </div>
             <div class="col-md-2">
-                <p class="demand-item-detail">合约状态</p>
+                <p class="demand-item-detail">合约状态</p><span>你好</span>
             </div>
             <div class="col-md-2">
                 <a href="#" class="jyfw-section">
                     <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                     <button type="button" class="btn btn-primary">合约详情</button>
-
                 </a>
             </div>
 
@@ -129,8 +135,30 @@
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
-<script>
-    new WOW().init();
+<script type="text/javascript">
+    $(function () {
+        Page(1, 10);
+    })
+    function Page(page, count) {
+        var dealObject = $("#dealObject").val();
+        $.ajax({
+            url: '/demands',
+            data: {
+                "page": page,
+                "count": count,
+                "status": 1,
+                "dealObject": dealObject
+            },
+            type: 'POST',
+            success: function (result) {
+                if(result.success) {
+                    console.log(result.data.list)
+                }else {
+                    console.log("获取数据失败！");
+                }
+            }
+        })
+    }
 </script>
 
 </body>

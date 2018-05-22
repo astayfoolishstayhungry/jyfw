@@ -22,6 +22,6 @@ public interface DemandService {
      * @param status
      * @return
      */
-    List<DemandEntity> listDemandByStatus(Integer status);
+    List<DemandEntity> listDemandByStatus(Integer page, Integer count, Integer status, String dealObject);
 
 }

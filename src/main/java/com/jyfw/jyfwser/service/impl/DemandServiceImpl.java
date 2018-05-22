@@ -1,5 +1,6 @@
 package com.jyfw.jyfwser.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.jyfw.jyfwser.mapper.DemandMapper;
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
 import com.jyfw.jyfwser.service.DemandService;
@@ -29,8 +30,11 @@ public class DemandServiceImpl implements DemandService {
     }
 
     @Override
-    public List<DemandEntity> listDemandByStatus(Integer status) {
-        List<DemandEntity> demands = demandMapper.listDemandByStatus(status);
+    public List<DemandEntity> listDemandByStatus(Integer page, Integer count, Integer status, String dealObject) {
+        if(page != null && count != null) {
+            PageHelper.startPage(page, count);
+        }
+        List<DemandEntity> demands = demandMapper.listDemandByStatus(status, dealObject);
         for (DemandEntity demand : demands) {
             Date dealTime = demand.getDealTime();
             demand.setDealTimeFormat(DateUtil.parseDateToStr(dealTime, DateUtil.DATE_TIME_FORMAT_YYYYMMDD));

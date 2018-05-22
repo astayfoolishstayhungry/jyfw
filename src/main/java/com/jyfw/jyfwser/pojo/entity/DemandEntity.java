@@ -21,5 +21,6 @@ public class DemandEntity {
     private Integer status;
     private String desc;
     private Date createTime;
+    private String gender;
 
 }

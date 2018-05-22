@@ -26,7 +26,7 @@ public class DemandController {
         UserEntity user = (UserEntity) session.getAttribute("user");
         ModelAndView modelAndView = new ModelAndView();
         demand.setUid(user.getUid());
-        demand.setStatus(DemandStatusEnum.UNVALIDATOR.getCode());
+        demand.setStatus(DemandStatusEnum.VALIDATOR.getCode());
         Integer id = demandService.addDemand(demand);
         if(null != user) {
             modelAndView.addObject("user", user);

@@ -63,8 +63,6 @@ public class PageController {
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user) {
             modelAndView.addObject("user", user);
-            //获取需求列表
-            demandService.listDemandByStatus(null);
             modelAndView.setViewName("demand");
         }else {
             modelAndView.addObject("errorInfo","请先登录！");
@@ -125,7 +123,7 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
-            List<DemandEntity> savedDemands = demandService.listDemandByStatus(DemandStatusEnum.UNVALIDATOR.getCode());
+            List<DemandEntity> savedDemands = demandService.listDemandByStatus(null,null,DemandStatusEnum.UNVALIDATOR.getCode(), null);
             for (DemandEntity demand : savedDemands) {
                 demand.setDealTimeFormat(DateUtil.parseDateToStr(demand.getDealTime(), DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
             }
@@ -145,7 +143,7 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
-            List<DemandEntity> savedDemands = demandService.listDemandByStatus(DemandStatusEnum.UNVALIDATOR.getCode());
+            List<DemandEntity> savedDemands = demandService.listDemandByStatus(null, null,DemandStatusEnum.UNVALIDATOR.getCode(), null);
             for (DemandEntity demand : savedDemands) {
                 demand.setDealTimeFormat(DateUtil.parseDateToStr(demand.getDealTime(), DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
             }
