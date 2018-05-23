@@ -8,7 +8,13 @@
         (#{accountType}, #{status}, #{name}, #{password}, #{email}, #{phone}, #{avatar});
     </insert>
 
-    <select id="getUserByPhoneAndPassword" parameterType="hashMap" resultType="com.jyfw.jyfwser.pojo.entity.UserEntity">
+    <select id="getUserByPhoneAndPassword" parameterType="map" resultType="com.jyfw.jyfwser.pojo.entity.UserEntity">
         SELECT * FROM `user` WHERE `phone`=#{phone} AND `password`=#{password} LIMIT 1;
+    </select>
+
+    <select id="getUserByDemandId" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.UserEntity">
+        SELECT u.* FROM `demand` d
+        LEFT JOIN `user` u ON d.uid = u.uid
+        WHERE d.id = #{demandId};
     </select>
 </mapper>

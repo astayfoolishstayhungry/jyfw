@@ -76,7 +76,7 @@
             <div class="input-group row" style="height: 60px;">
                 <input type="text" class="form-control" id="dealObject" placeholder="请输入标的名称" style="margin-top: 20px;"/>
                 <span class="input-group-btn">
-                    <button class="btn btn-primary btn-search" style="margin-top: 14px;">查找</button>
+                    <button class="btn btn-primary btn-search" id="btn-search" style="margin-top: 14px;">查找</button>
                 </span>
             </div>
         </div>
@@ -92,35 +92,18 @@
 
 </div>
 
-<div class="container">
+<div class="container" id="demand-item">
     <div class="demand-item-list">
-        <p class="demand-item-title">合约名称<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span></p>
+        <p class="demand-item-title">需求发布人<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span><span>：海子</span></p>
         <div class="row">
-            <div class="col-md-2">
-                <p class="demand-item-detail">合约标的</p><span>你好</span>
-            </div>
-            <div class="col-md-2">
-                <p class="demand-item-detail">交易数量</p><span>你好</span>
-            </div>
-            <div class="col-md-2">
-                <p class="demand-item-detail">交易价格</p><span>你好</span>
-            </div>
-            <div class="col-md-2">
-                <p class="demand-item-detail">交易日期</p><span>你好</span>
-            </div>
-            <div class="col-md-2">
-                <p class="demand-item-detail">合约状态</p><span>你好</span>
-            </div>
-            <div class="col-md-2">
-                <a href="#" class="jyfw-section">
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <button type="button" class="btn btn-primary">合约详情</button>
-                </a>
-            </div>
-
+            <div class="col-md-2"><span class="demand-item-object">你好</span><p class="demand-item-detail">合约标的</p></div>
+            <div class="col-md-2"><span class="demand-item-num">你好</span><p class="demand-item-detail">交易数量</p></div>
+            <div class="col-md-2"><span class="demand-item-price">你好</span><p class="demand-item-detail">交易价格</p></div>
+            <div class="col-md-2"><span class="demand-item-num">你好</span><p class="demand-item-detail">交易日期</p></div>
+            <div class="col-md-2"><span class="demand-item-object">你好</span><p class="demand-item-detail">合约状态</p></div>
+            <div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary">预订</button></a></div>
         </div>
     </div>
-
 </div>
 
 <div id="banners"></div>
@@ -133,12 +116,19 @@
 
 
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript">
     $(function () {
         Page(1, 10);
     })
+
+    // 搜索点击事件
+    $("#btn-search").click(function () {
+        Page(1, 10);
+    })
+
     function Page(page, count) {
         var dealObject = $("#dealObject").val();
         $.ajax({
@@ -152,13 +142,35 @@
             type: 'POST',
             success: function (result) {
                 if(result.success) {
-                    console.log(result.data.list)
+                    $("#demand-item").empty();
+                    loadPageInfo(result.data);
+                    $(result.data.list).each(function (i, item) {
+                        var pageStr = '';
+                        pageStr = pageStr + '<div class="demand-item-list">';
+                        pageStr = pageStr + '<p class="demand-item-title">需求发布人<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span><span>：'+ item.username + '</span></p>';
+                        pageStr = pageStr + '<div class="row">';
+                        pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-object">' + item.dealObject + '</span><p class="demand-item-detail">合约标的</p></div>';
+                        pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-num">' + item.dealNum + '</span><p class="demand-item-detail">交易数量</p></div>';
+                        pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-price">' + item.dealPrice + '</span><p class="demand-item-detail">交易价格</p></div>';
+                        pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-num">' + timeExchange(item.dealTime) + '</span><p class="demand-item-detail">交易日期</p></div>';
+                        pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-object">' + demandStatusExchange(item.status) + '</span><p class="demand-item-detail">合约状态</p></div>';
+                        pageStr = pageStr + '<div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary" onclick="getDemandDetail('+ item.id + ')">预订</button></a></div>';
+                        pageStr = pageStr + '</div>';
+                        pageStr = pageStr + '</div>';
+                        $("#demand-item").append(pageStr);
+                    })
                 }else {
                     console.log("获取数据失败！");
                 }
             }
         })
     }
+
+    function getDemandDetail(demandId) {
+        window.location.href="/demand/get?demandId="+demandId;
+    }
+
+
 </script>
 
 </body>

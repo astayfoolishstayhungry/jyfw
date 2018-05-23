@@ -23,4 +23,6 @@ public interface UserService {
      */
     UserEntity userLogin(String phone, String password);
 
+    UserEntity getUserByDemandId(Integer demandId);
+
 }

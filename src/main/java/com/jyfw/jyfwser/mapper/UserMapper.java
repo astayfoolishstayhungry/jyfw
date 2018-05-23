@@ -24,4 +24,6 @@ public interface UserMapper {
      */
     UserEntity getUserByPhoneAndPassword(@Param("phone") String phone, @Param("password") String password);
 
+    UserEntity getUserByDemandId(Integer demandId);
+
 }

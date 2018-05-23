@@ -63,3 +63,188 @@ function loadPageInfo(pageInfo){
     $(".pagination").empty();
     $(".pagination").append(totalPageStr);
 }
+
+/**
+ * 提示插件
+ * @param title
+ * @returns
+ */
+function loading(title) {
+    if(title==""){
+        title="加载中...";
+    }
+    $('body').loading({
+        selector: 'body',
+        loadingWidth:240,
+        title:title,
+        name:'bodyMsg',
+        discription:'...',
+        direction:'column',
+        type:'origin',
+        originBg:'rgba(120, 124, 123, 0.67)',
+        originDivWidth:40,
+        originDivHeight:40,
+        originWidth:6,
+        originHeight:6,
+        smallLoading:false,
+        loadingBg:'rgba(120, 124, 123, 0.67)',
+        loadingMaskBg:'rgba(123,122,222,0.2)'
+    });
+}
+
+
+/**
+ * 根据条件判断显示值
+ * @param condition
+ * @param val1
+ * @param val2
+ * @returns {*}
+ */
+function ifTrue(condition,val1,val2){
+    if(condition){
+        return val1;
+    }
+    return val2;
+}
+function timeExchange(time){
+    if(time==""||typeof (time)=="undefined"||typeof (time)=="null"||time==null){
+        return "";
+    }
+
+    var data = new Date(time);
+    var y = data.getFullYear();//年
+    var m = data.getMonth() + 1;//月
+    var d = data.getDate();//日
+    return y+"-"+m+"-"+d;
+}
+
+function timeChange(time){
+    if(time==""||typeof (time)=="undefined"||typeof (time)=="null"||time==null){
+        return "";
+    }
+
+    var data = new Date(time);
+    var y = data.getFullYear();//年
+    var m = data.getMonth() + 1;//月
+    var d = data.getDate();//日
+    var h = data.getHours();
+    var min = data.getMinutes();
+    var s=data.getSeconds();
+    return h+":"+min+":"+s;
+}
+
+function timeExchangeHM(time){
+    if(time==""||typeof (time)=="undefined"||typeof (time)=="null"||time==null){
+        return "";
+    }
+    var data = new Date(time);
+    var y = data.getFullYear();//年
+    var m = data.getMonth() + 1;//月
+    var d = data.getDate();//日
+    var h = data.getHours();
+    var min = data.getMinutes();
+    return y + "-" + m + "-" + d + " " + h + ":" + min;
+}
+
+
+function timeExchangeHMS(time){
+    if(time==""||typeof (time)=="undefined"||typeof (time)=="null"||time==null){
+        return "";
+    }
+    var data = new Date(time);
+    var y = data.getFullYear();//年
+    var m = data.getMonth() + 1;//月
+    var d = data.getDate();//日
+    var h = data.getHours();
+    var min = data.getMinutes();
+    var s=data.getSeconds();
+    return y + "-" + m + "-" + d + " " + h + ":" + min + ":"+s;
+}
+
+/**
+ * 将秒数换成时分秒格式
+ * @param second 秒
+ * @example 60 1分钟
+ */
+function secondExchangeHMS(second) {
+    var secondTime = second;// 秒
+    var minuteTime = 0;// 分
+    var hourTime = 0;// 小时
+    if(secondTime >= 60) {
+        minuteTime = secondTime / 60;
+        secondTime = secondTime % 60;
+        if(minuteTime > 60) {
+            hourTime = minuteTime / 60;
+            minuteTime = minuteTime % 60;
+        }
+    }
+    var result = "";
+    if(secondTime > 0) {
+        result = "" + secondTime + "秒";
+    }
+    if(minuteTime > 0) {
+        result = "" + minuteTime + "分" + result;
+    }
+    if(hourTime > 0) {
+        result = "" + hourTime + "小时" + result;
+    }
+    return result;
+}
+
+/**
+ * text 为弹出的提示标题
+ * time 为默认自动关闭时间1000即1秒
+ * url 点击后跳转链接
+ * type 类型 成功还是警告，成功即success 警告即warning
+ * @param text
+ * @param time
+ * @param url
+ * @param type
+ */
+function swalAlert(text,time,url,type){
+    if(text==""){
+        text="保存成功";
+    };
+    var img="";
+    if(type=="warning"){
+        img=basePath+"/resources/global/img/warning.png";
+    }else{
+        img=basePath+"/resources/global/img/success.png";
+    }
+    if(time==""){
+        time=3000;
+    }
+    swal({
+        title : '',
+        text : text,
+        confirmButtonColor:"#f08000",
+        imageUrl : img,
+        imageSize : "70x70",
+        timer:time,
+    },function(){
+        console.log(url)
+        if(url == "reload"){
+            window.location.reload();
+        }
+        if(url != "" && url != "reload"){
+            window.location.href=url;
+        }
+
+    });
+}
+
+function demandStatusExchange(status) {
+    if(status == 0) {
+        return '已保存';
+    }
+    if(status == 1) {
+        return '正常';
+    }
+    if(status == 2) {
+        return '匹配成功';
+    }
+    if(status == 3) {
+        return '已失效';
+    }
+    
+}

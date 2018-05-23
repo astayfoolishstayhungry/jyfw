@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService {
     public UserEntity userLogin(String phone, String password) {
         return userMapper.getUserByPhoneAndPassword(phone, password);
     }
+
+    @Override
+    public UserEntity getUserByDemandId(Integer demandId) {
+        return userMapper.getUserByDemandId(demandId);
+    }
 }

@@ -5,16 +5,16 @@
 
     <insert id="addDemand" parameterType="com.jyfw.jyfwser.pojo.entity.DemandEntity" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO `demand` (
-	      `uid`,`dealTime`,`dealObject`,`dealNum`,`dealPrice`,`status`,`desc`, `gender`
+	      `uid`,`dealTime`,`dealObject`,`dealNum`,`dealPrice`,`status`,`desc`, `category`
         ) VALUES	(
-          #{uid},#{dealTime},#{dealObject},#{dealNum},#{dealPrice},#{status},#{desc}, #{gender}
+          #{uid},#{dealTime},#{dealObject},#{dealNum},#{dealPrice},#{status},#{desc}, #{category}
         );
     </insert>
 
     <select id="listDemandByStatus" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.DemandEntity">
         SELECT * FROM `demand` WHERE `status` = #{status}
         <if test="dealObject != null and dealObject != ''">
-            dealObject = #{dealObject}
+            and dealObject like #{dealObject}
         </if>
     </select>
 

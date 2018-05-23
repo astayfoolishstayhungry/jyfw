@@ -1,6 +1,7 @@
 package com.jyfw.jyfwser.mapper;
 
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
+import com.jyfw.jyfwser.pojo.entity.UserEntity;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
