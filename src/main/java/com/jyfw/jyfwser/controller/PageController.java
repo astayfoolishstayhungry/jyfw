@@ -3,7 +3,9 @@ package com.jyfw.jyfwser.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.jyfw.jyfwser.pojo.Const;
 import com.jyfw.jyfwser.pojo.em.DemandStatusEnum;
+import com.jyfw.jyfwser.pojo.entity.CommentEntity;
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
+import com.jyfw.jyfwser.pojo.entity.TopicEntity;
 import com.jyfw.jyfwser.pojo.entity.UserEntity;
 import com.jyfw.jyfwser.pojo.vo.JuHeData;
 import com.jyfw.jyfwser.pojo.vo.JuHeResult;
@@ -178,9 +180,24 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
-            model.addAttribute("demand", new DemandEntity());
+            model.addAttribute("topic", new TopicEntity());
             modelAndView.addObject("user", user);
             modelAndView.setViewName("topicadd");
+        }else {
+            modelAndView.addObject("errorInfo","请先登录！");
+            modelAndView.setViewName("login");
+        }
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/topicdiscuss")
+    public ModelAndView getTopicDiscuss(Model model, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user ) {
+            model.addAttribute("comment", new CommentEntity());
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("topicdiscuss");
         }else {
             modelAndView.addObject("errorInfo","请先登录！");
             modelAndView.setViewName("login");

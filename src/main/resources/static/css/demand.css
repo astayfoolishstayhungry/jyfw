@@ -65,6 +65,13 @@
     margin-top: 6px;
 }
 
+.topic-discuss-title{
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    margin-bottom: 20px;
+
+}
+
 .demand-item-object {
     text-align: left;
     font-size: 26px;

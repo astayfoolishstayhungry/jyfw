@@ -77,46 +77,57 @@
 
 <section class="container row">
     <div style="height:20px;" class="col-md-3"></div>
-    <div class="aui-content-up col-md-7">
-        <form th:action="@{/inserttopic}" th:object="${topic}" th:method="post">
-            <div class="aui-content-up-form">
-                <h2 style="padding-bottom: 15px; padding-left: 230px;" class="jyfw-title">发起话题</h2>
-            </div>
-            <div class="aui-form-group clear">
-                <label class="aui-label-control">
-                    话题名称 <em>*</em>
-                </label>
-                <div class="aui-form-input" style="padding-bottom: 15px;">
-                    <input type="text" th:field="*{topicName}" class="form-control" style="height: 50px;"
-                           placeholder="请输入要讨论的话题名称" required="required"/>
-                </div>
-            </div>
-            <div class="row" style="padding-top: 15px; padding-bottom: 15px;">
-                <div class="aui-form-group clear col-md-2">
-                    <label class="aui-label-control" style="margin-top: -10px;">
-                        话题类型 <em>*</em>
-                    </label>
-                </div>
-                <div class="col-md-10">
-                    <input type="radio" th:field="*{category}" name="category" id="yq" value="远期" checked="true"
-                           required="required"/>远期&ensp;&ensp;
-                    <input type="radio" th:field="*{category}" name="category" id="qh" value="期货" checked="true" required="required"/>期货
-                    <input type="radio" th:field="*{category}" name="category" id="qq" value="期权" checked="true"
-                           required="required"/>期权&ensp;&ensp;
-                    <input type="radio" th:field="*{category}" name="category" id="wh" value="外汇" checked="true" required="required"/>外汇
-                    <input type="radio" th:field="*{category}" name="category" id="ll" value="利率" checked="true"
-                           required="required"/>利率&ensp;&ensp;
-                    <input type="radio" th:field="*{category}" name="category" id="qt" value="其他" checked="true" required="required"/>其他
-                </div>
-            </div>
 
+    <div class="aui-content-up col-md-7">
+        <form th:action="@{/topicdiscuss}" th:object="${comment}" th:method="post">
+            <div class="aui-content-up-form">
+                <h2 style="padding-bottom: 15px; padding-left: 230px;" class="jyfw-title">话题讨论</h2>
+            </div>
+            <div class="topic-discuss-title" >
+                <div class="row" >
+                    <div class="col-md-8" style="padding-left: 30px; padding-top: 15px;">
+                        <p class="demand-item-title">话题名称</p>
+                    </div>
+                    <div class="col-md-2" style="padding-top: 10px;">
+                        <p class="demand-item-detail">用户名</p>
+                    </div>
+                    <div class="col-md-2" style="padding-top: 10px;">
+                        <p class="demand-item-detail">发布时间</p>
+                    </div>
+                </div>
+                <p style="padding-left: 15px;">话题描述......</p>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p style="padding-left: 15px;">评论内容1</p>
+                    </div>
+                    <div class="col-md-2 demand-item-detail">用户名</div>
+                    <div class="col-md-2 demand-item-detail">发布时间</div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p style="padding-left: 15px;">评论内容2</p>
+                    </div>
+                    <div class="col-md-2 demand-item-detail">用户名</div>
+                    <div class="col-md-2 demand-item-detail">发布时间</div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p style="padding-left: 15px;">......</p>
+                    </div>
+                    <div class="col-md-2 demand-item-detail"></div>
+                    <div class="col-md-2 demand-item-detail"></div>
+                </div>
+
+            </div>
             <div class="aui-form-group clear">
                 <label class="aui-label-control">
-                    话题描述 <em>*</em>
+                    写评论<em>*</em>
                 </label>
                 <div class="aui-form-input" style="padding-bottom: 15px;">
-                    <textarea th:field="*{content}" class="form-control" style="height: 200px;"
-                              minlength="5">请用简短的文字描述您的话题</textarea>
+                    <textarea th:field="*{desc}" class="form-control" minlength="5">请用简短的文字描述您的合约产品</textarea>
                 </div>
             </div>
             <div class="aui-form-group-text">
