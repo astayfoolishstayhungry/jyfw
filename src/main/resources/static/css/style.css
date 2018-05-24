@@ -413,7 +413,6 @@ p.blog-text{
 */
 .services-section {
   text-align: center;
-  padding-top: 50px;
   padding-bottom: 50px;
 }
 .services-section .services-header {
@@ -423,7 +422,7 @@ p.blog-text{
 .services-section .services-header .services-header-title {
   margin-bottom: 15px;
 }
-.services-section .services-row-tail {
+.services-row-tail {
   margin-top: 50px;
 }
 .services-section .services-icon {
@@ -457,7 +456,7 @@ p.blog-text{
 }
 .services-group{
   padding: 10px;
-  background:#061F20;
+  background:#528C7C;
   color: white;
 }
 .service-icon{

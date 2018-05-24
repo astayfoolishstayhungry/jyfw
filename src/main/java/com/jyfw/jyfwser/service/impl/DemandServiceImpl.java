@@ -37,7 +37,11 @@ public class DemandServiceImpl implements DemandService {
         List<DemandEntity> demands = demandMapper.listDemandByStatus(status, dealObject);
         for (DemandEntity demand : demands) {
             Date dealTime = demand.getDealTime();
-            demand.setDealTimeFormat(DateUtil.parseDateToStr(dealTime, DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
+            if(null != dealTime) {
+                demand.setDealTimeFormat(DateUtil.parseDateToStr(dealTime, DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
+            }else {
+                continue;
+            }
         }
         return demands;
     }

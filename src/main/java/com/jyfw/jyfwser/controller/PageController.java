@@ -92,15 +92,27 @@ public class PageController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/statistic")
-    public ModelAndView getStatisticPage(HttpServletRequest request) {
+    @GetMapping(value = "/contact")
+    public ModelAndView getContactPage(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user) {
             modelAndView.addObject("user", user);
         }
-        modelAndView.setViewName("statistic");
+        modelAndView.setViewName("contact");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/contactdetail")
+    public ModelAndView getContactDetailPage(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user) {
+            modelAndView.addObject("user", user);
+        }
+        modelAndView.setViewName("contactdetail");
         return modelAndView;
     }
 

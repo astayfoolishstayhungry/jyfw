@@ -46,7 +46,7 @@
                 </li>
 
                 <li>
-                    <a href="statistic.html">交易数据</a>
+                    <a href="contact.html">合约展示</a>
                 </li>
 
                 <li th:if="${user == null}">
@@ -94,14 +94,17 @@
 
 <div class="container" id="demand-item">
     <div class="demand-item-list">
-        <p class="demand-item-title">需求发布人<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span><span>：海子</span></p>
+        <p class="demand-item-title">
+            需求发布人<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span><span>：海子</span>
+            <span style="padding-left: 36px;">身份：<span style="font-size: 24px; color: red;">卖方</span></span>
+        </p>
         <div class="row">
             <div class="col-md-2"><span class="demand-item-object">你好</span><p class="demand-item-detail">合约标的</p></div>
             <div class="col-md-2"><span class="demand-item-num">你好</span><p class="demand-item-detail">交易数量</p></div>
             <div class="col-md-2"><span class="demand-item-price">你好</span><p class="demand-item-detail">交易价格</p></div>
             <div class="col-md-2"><span class="demand-item-num">你好</span><p class="demand-item-detail">交易日期</p></div>
             <div class="col-md-2"><span class="demand-item-object">你好</span><p class="demand-item-detail">合约状态</p></div>
-            <div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary">预订</button></a></div>
+            <div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary">请求匹配</button></a></div>
         </div>
     </div>
 </div>
@@ -147,14 +150,15 @@
                     $(result.data.list).each(function (i, item) {
                         var pageStr = '';
                         pageStr = pageStr + '<div class="demand-item-list">';
-                        pageStr = pageStr + '<p class="demand-item-title">需求发布人<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span><span>：'+ item.username + '</span></p>';
+                        pageStr = pageStr + '<p class="demand-item-title">需求发布人<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span><span>：'+ item.username + '</span>';
+                        pageStr = pageStr + '<span style="padding-left: 36px;">身份：<span style="font-size: 24px; color: #0615ff;">' + item.category + '</span></span></p>';
                         pageStr = pageStr + '<div class="row">';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-object">' + item.dealObject + '</span><p class="demand-item-detail">合约标的</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-num">' + item.dealNum + '</span><p class="demand-item-detail">交易数量</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-price">' + item.dealPrice + '</span><p class="demand-item-detail">交易价格</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-num">' + timeExchange(item.dealTime) + '</span><p class="demand-item-detail">交易日期</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-object">' + demandStatusExchange(item.status) + '</span><p class="demand-item-detail">合约状态</p></div>';
-                        pageStr = pageStr + '<div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary" onclick="getDemandDetail('+ item.id + ')">预订</button></a></div>';
+                        pageStr = pageStr + '<div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary" onclick="getDemandDetail('+ item.id + ')">请求匹配</button></a></div>';
                         pageStr = pageStr + '</div>';
                         pageStr = pageStr + '</div>';
                         $("#demand-item").append(pageStr);
@@ -164,10 +168,6 @@
                 }
             }
         })
-    }
-
-    function getDemandDetail(demandId) {
-        window.location.href="/demand/get?demandId="+demandId;
     }
 
 

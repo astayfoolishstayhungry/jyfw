@@ -46,7 +46,7 @@
                 </li>
 
                 <li>
-                    <a href="statistic.html">交易数据</a>
+                    <a href="contact.html">合约展示</a>
                 </li>
 
                 <li th:if="${user == null}">
@@ -92,8 +92,8 @@
 
 </div>
 
-<div class="container">
-    <div class="demand-item-list" id="topic">
+<div class="container" id="topic">
+    <div class="demand-item-list">
         <div class="row">
             <div class="col-md-8">
                 <p class="demand-item-title">话题名称<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span></p>
@@ -152,12 +152,14 @@
                     loadPageInfo(result.data);
                     $(result.data.list).each(function (i, item) {
                         var pageStr = '';
+                        pageStr = pageStr + '<div class="demand-item-list">';
                         pageStr = pageStr + '<div class="row"><div class="col-md-8"><p class="demand-item-title">' + item.topicName + '<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span></p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><p class="demand-item-detail">'+ item.name +'</p></div><div class="col-md-2"><p class="demand-item-detail">'+ timeExchange(item.createTime) +'</p></div>';
                         pageStr = pageStr + '</div><p>'+ item.content +'</p>';
                         pageStr = pageStr + '<div class="demand-item-detail row">';
                         pageStr = pageStr + '<div class="col-md-8"></div><div class="col-md-1">xx条评论</div><div class="col-md-1">点赞</div>';
                         pageStr = pageStr + '<div class="col-md-2" style="padding-bottom: 15px;"><a href="topicdiscuss.html">参与讨论</a></div>';
+                        pageStr = pageStr + '</div>';
                         pageStr = pageStr + '</div>';
                         $("#topic").append(pageStr);
                     })
