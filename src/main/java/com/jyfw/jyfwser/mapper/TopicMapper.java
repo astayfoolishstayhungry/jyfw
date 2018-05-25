@@ -11,4 +11,6 @@ public interface TopicMapper {
 
     List<TopicEntity> listTopic(@Param("topicName") String topicName);
 
+    TopicEntity getTopicById(Integer topicId);
+
 }

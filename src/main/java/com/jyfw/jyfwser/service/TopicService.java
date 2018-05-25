@@ -10,4 +10,6 @@ public interface TopicService {
 
     List<TopicEntity> listTopic(Integer page, Integer count, String topicName);
 
+    TopicEntity getTopicById(Integer topicId);
+
 }

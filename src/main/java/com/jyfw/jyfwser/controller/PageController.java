@@ -7,7 +7,9 @@ import com.jyfw.jyfwser.pojo.entity.*;
 import com.jyfw.jyfwser.pojo.vo.JuHeData;
 import com.jyfw.jyfwser.pojo.vo.JuHeResult;
 import com.jyfw.jyfwser.pojo.vo.NewsVO;
+import com.jyfw.jyfwser.service.CommentService;
 import com.jyfw.jyfwser.service.DemandService;
+import com.jyfw.jyfwser.service.TopicService;
 import com.jyfw.jyfwser.util.DateUtil;
 import com.jyfw.jyfwser.util.http.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,12 @@ public class PageController {
 
     @Autowired
     private DemandService demandService;
+
+    @Autowired
+    private TopicService topicService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping(value = "/")
     public ModelAndView getHomePage(HttpServletRequest request) {
@@ -200,12 +208,16 @@ public class PageController {
     }
 
     @GetMapping(value = "/topicdiscuss")
-    public ModelAndView getTopicDiscuss(Model model, HttpSession session) {
+    public ModelAndView getTopicDiscuss(Model model, HttpSession session, Integer topicId) {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
+            TopicEntity topic = topicService.getTopicById(topicId);
+            List<CommentEntity> comments = commentService.listCommentByObject(topicId);
             model.addAttribute("comment", new CommentEntity());
             modelAndView.addObject("user", user);
+            modelAndView.addObject("topic", topic);
+            modelAndView.addObject("comments", comments);
             modelAndView.setViewName("topicdiscuss");
         }else {
             modelAndView.addObject("errorInfo","请先登录！");

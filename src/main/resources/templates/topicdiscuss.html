@@ -79,55 +79,39 @@
     <div style="height:20px;" class="col-md-3"></div>
 
     <div class="aui-content-up col-md-7">
-        <form th:method="post">
-            <div class="aui-content-up-form">
-                <h2 style="padding-bottom: 15px; padding-left: 230px;" class="jyfw-title">话题讨论</h2>
+        <div class="aui-content-up-form">
+            <h2 style="padding-bottom: 15px; padding-left: 230px;" class="jyfw-title">话题讨论</h2>
+        </div>
+        <div class="topic-discuss-title">
+            <div class="row">
+                <div class="col-md-8" style="padding-left: 30px; padding-top: 15px;">
+                    <p class="demand-item-title topic-title" th:attr="data-topicId=''+${topic.id}" th:text="${topic.topicName}">话题名称</p>
+                </div>
+                <div class="col-md-2" style="padding-top: 10px;">
+                    <p class="demand-item-detail" th:text="${topic.name}">用户名</p>
+                </div>
+                <div class="col-md-2" style="padding-top: 10px;">
+                    <p class="demand-item-detail date" th:attr="data-createtime=''+${topic.createTime}">发布时间</p>
+                </div>
             </div>
-            <div class="topic-discuss-title" >
-                <div class="row" >
-                    <div class="col-md-8" style="padding-left: 30px; padding-top: 15px;">
-                        <p class="demand-item-title">话题名称</p>
-                    </div>
-                    <div class="col-md-2" style="padding-top: 10px;">
-                        <p class="demand-item-detail">用户名</p>
-                    </div>
-                    <div class="col-md-2" style="padding-top: 10px;">
-                        <p class="demand-item-detail">发布时间</p>
-                    </div>
+            <p style="padding-left: 15px;" th:text="${topic.content}">话题描述......</p>
+            <hr/>
+            <div class="row" th:each="comment, commentStat : ${comments}">
+                <div class="col-md-8">
+                    <p style="padding-left: 15px;" th:text="${comment.content}">评论内容1</p>
                 </div>
-                <p style="padding-left: 15px;">话题描述......</p>
-                <hr/>
-                <div class="row">
-                    <div class="col-md-8">
-                        <p style="padding-left: 15px;">评论内容1</p>
-                    </div>
-                    <div class="col-md-2 demand-item-detail">用户名</div>
-                    <div class="col-md-2 demand-item-detail">发布时间</div>
-                </div>
-                <hr/>
-                <div class="row">
-                    <div class="col-md-8">
-                        <p style="padding-left: 15px;">评论内容2</p>
-                    </div>
-                    <div class="col-md-2 demand-item-detail">用户名</div>
-                    <div class="col-md-2 demand-item-detail">发布时间</div>
-                </div>
-                <hr/>
-                <div class="row">
-                    <div class="col-md-8">
-                        <p style="padding-left: 15px;">......</p>
-                    </div>
-                    <div class="col-md-2 demand-item-detail"></div>
-                    <div class="col-md-2 demand-item-detail"></div>
-                </div>
-
+                <div class="col-md-2 demand-item-detail" th:text="${comment.name}">用户名</div>
+                <div class="col-md-2 demand-item-detail date" th:attr="data-createtime=''+${topic.createTime}">发布时间</div>
             </div>
+            <hr/>
+        </div>
+        <!--<form th:aciton="@{/insertcomment}" th:method="post">-->
             <div class="aui-form-group clear">
                 <label class="aui-label-control">
                     写评论<em>*</em>
                 </label>
                 <div class="aui-form-input" style="padding-bottom: 15px;">
-                    <textarea class="form-control" minlength="5"></textarea>
+                    <textarea class="form-control" id="comment-content" minlength="5"></textarea>
                 </div>
             </div>
             <div class="aui-form-group-text">
@@ -135,16 +119,27 @@
                 <p>为了使您能够体验更好的本平台服务，禁止发布虚假内容。</p>
             </div>
             <div class="aui-btn-default" style="padding-left: 230px;">
-                <button class="aui-btn aui-btn-account">发布</button>
+                <button class="aui-btn aui-btn-account btn-comment">评论</button>
             </div>
-        </form>
+        <!--</form>-->
 
     </div>
     <div class="col-md-2"></div>
 </section>
 
+
+
+<div id="banners"></div>
+
+
+<div class="copyright text center">
+    <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
+    <p>作者：140104300123 陈璐</p>
+</div>
+
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="js/up.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/mobiscroll.custom.min.js"></script>
 <script>
     var theme = "ios";
@@ -157,22 +152,31 @@
         display: display,
         lang: lang
     });
-</script>
 
-<div id="banners"></div>
+    $(function () {
+        var date = $(".date").attr("data-createtime");
+        $(".date").html(timeExchange(date));
+    })
 
+    $("body").on("click", ".btn-comment", function () {
+        var topicId = $(".topic-title").attr("data-topicId");
+        var content = $("#comment-content").val();
+        $.ajax({
+            url: '/insertcomment',
+            data: {
+                "topicId": topicId,
+                "content": content
+            },
+            type: 'POST',
+            success: function (result) {
+                if(result.success) {
+                    alert("评论成功！");
+                    window.location.href = '/demand';
+                }
+            }
+        })
+    })
 
-<div class="copyright text center">
-    <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
-    <p>作者：140104300123 陈璐</p>
-</div>
-
-
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script>
-    new WOW().init();
 </script>
 </body>
 </html>

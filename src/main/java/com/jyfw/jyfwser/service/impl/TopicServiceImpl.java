@@ -28,4 +28,9 @@ public class TopicServiceImpl implements TopicService {
         }
         return topicMapper.listTopic(topicName);
     }
+
+    @Override
+    public TopicEntity getTopicById(Integer topicId) {
+        return topicMapper.getTopicById(topicId);
+    }
 }

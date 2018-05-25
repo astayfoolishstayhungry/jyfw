@@ -14,5 +14,6 @@ public class CommentEntity {
     private Integer uid;
     private Integer status;
     private Date createTime;
+    private String name;
 
 }

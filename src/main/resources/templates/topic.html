@@ -164,7 +164,7 @@
                         pageStr = pageStr + '</div><p>'+ item.content +'</p>';
                         pageStr = pageStr + '<div class="demand-item-detail row">';
                         pageStr = pageStr + '<div class="col-md-8"></div><div class="col-md-1">xx条评论</div><div class="col-md-1">点赞</div>';
-                        pageStr = pageStr + '<div class="col-md-2" style="padding-bottom: 15px;"><a href="topicdiscuss.html">参与讨论</a></div>';
+                        pageStr = pageStr + '<div class="col-md-2" style="padding-bottom: 15px;"><a href="/topicdiscuss?topicId=' + item.id + '">参与讨论</a></div>';
                         pageStr = pageStr + '</div>';
                         pageStr = pageStr + '</div>';
                         $("#topic").append(pageStr);

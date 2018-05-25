@@ -191,48 +191,6 @@ function secondExchangeHMS(second) {
     return result;
 }
 
-/**
- * text 为弹出的提示标题
- * time 为默认自动关闭时间1000即1秒
- * url 点击后跳转链接
- * type 类型 成功还是警告，成功即success 警告即warning
- * @param text
- * @param time
- * @param url
- * @param type
- */
-function swalAlert(text,time,url,type){
-    if(text==""){
-        text="保存成功";
-    };
-    var img="";
-    if(type=="warning"){
-        img=basePath+"/resources/global/img/warning.png";
-    }else{
-        img=basePath+"/resources/global/img/success.png";
-    }
-    if(time==""){
-        time=3000;
-    }
-    swal({
-        title : '',
-        text : text,
-        confirmButtonColor:"#f08000",
-        imageUrl : img,
-        imageSize : "70x70",
-        timer:time,
-    },function(){
-        console.log(url)
-        if(url == "reload"){
-            window.location.reload();
-        }
-        if(url != "" && url != "reload"){
-            window.location.href=url;
-        }
-
-    });
-}
-
 function demandStatusExchange(status) {
     if(status == 0) {
         return '已保存';
