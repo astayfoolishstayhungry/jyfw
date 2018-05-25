@@ -61,7 +61,8 @@
                        aria-expanded="false">欢迎！<span th:text="${user.name}"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/mycontact">我的合约</a></li>
-                        <li><a href="/mypage">个人主页</a></li>
+                        <li><a href="/mydemand">我的需求</a></li>
+                        <li><a href="/mytopic">我的话题</a></li>
                         <li><a href="/logout">安全退出</a></li>
                     </ul>
                 </li>
@@ -75,19 +76,20 @@
 </div>
 
 <div class="container text-center">
-    <span class="button-wrap">
-        <a href="/demandadd" class="button button-pill button-raised button-primary">发布金融交易合约</a>
-    </span>
-    <div id="banners"></div>
-    <p class="bg-info"><span th:text="${saveInfo}"></span></p>
 
-    <div class="collapse-card" th:each="demand, demandStat : ${savedDemands}">
-        <div class="collapse-card__heading"  style="background: #ffffff;">
-            <span th:text="${demand.dealTimeFormat}"></span> -- <span th:text="${demand.dealObject}"></span><p></p>
-            <span th:text="${demand.dealNum}"></span> -- <span th:text="${demand.dealPrice}"></span>
-        </div>
-        <div class="collapse-card__body" style="background: #ffffff;">
-            <span th:text="${demand.desc}"></span>
+    <div class="container" id="demand-item">
+        <div class="demand-item-list" style="border: 1px; color: #2f2f2f;">
+            <p class="demand-item-title" style="text-align: left;">
+                <span style="padding-left: 66px; ">身份：<span style="font-size: 24px; color: red;">卖方</span></span>
+            </p>
+            <div class="row">
+                <div class="col-md-2"><span class="demand-item-object">你好</span><p class="demand-item-detail">合约标的</p></div>
+                <div class="col-md-2"><span class="demand-item-num">你好</span><p class="demand-item-detail">交易数量</p></div>
+                <div class="col-md-2"><span class="demand-item-price">你好</span><p class="demand-item-detail">交易价格</p></div>
+                <div class="col-md-2"><span class="demand-item-num">你好</span><p class="demand-item-detail">交易日期</p></div>
+                <div class="col-md-2"><span class="demand-item-object">你好</span><p class="demand-item-detail">合约状态</p></div>
+                <div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary">编辑</button></a></div>
+            </div>
         </div>
     </div>
 

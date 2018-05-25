@@ -16,6 +16,7 @@
         <if test="dealObject != null and dealObject != ''">
             and dealObject like #{dealObject}
         </if>
+        GROUP BY createTime ORDER BY createTime DESC
     </select>
 
     <select id="getDemandByDemandId" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.ConfirmDemandEntity">

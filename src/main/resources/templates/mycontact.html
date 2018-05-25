@@ -61,7 +61,8 @@
                        aria-expanded="false">欢迎！<span th:text="${user.name}"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/mycontact">我的合约</a></li>
-                        <li><a href="/mypage">个人主页</a></li>
+                        <li><a href="/mydemand">我的需求</a></li>
+                        <li><a href="/mytopic">我的话题</a></li>
                         <li><a href="/logout">安全退出</a></li>
                     </ul>
                 </li>
@@ -75,19 +76,57 @@
 </div>
 
 <div class="container text-center">
-    <span class="button-wrap">
-        <a href="/demandadd" class="button button-pill button-raised button-primary">发布金融交易合约</a>
-    </span>
-    <div id="banners"></div>
-    <p class="bg-info"><span th:text="${saveInfo}"></span></p>
 
-    <div class="collapse-card" th:each="demand, demandStat : ${savedDemands}">
-        <div class="collapse-card__heading"  style="background: #ffffff;">
-            <span th:text="${demand.dealTimeFormat}"></span> -- <span th:text="${demand.dealObject}"></span><p></p>
-            <span th:text="${demand.dealNum}"></span> -- <span th:text="${demand.dealPrice}"></span>
+    <div class="row services-row services-row-head services-row-1">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="services-group wow animated fadeInLeft" data-wow-offset="40">
+                <h4 class="services-title">合约名称</h4>
+                <div class="col-md-6">
+                    <p class="services-body">买方：</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="services-body">卖方：</p>
+                </div>
+                <p style="text-align: left; padding-left: 30px;">合约标的：</p>
+                <p style="text-align: left; padding-left: 30px;">交易数量：</p>
+                <p style="text-align: left; padding-left: 30px;">交易总价：</p>
+                <p style="text-align: left; padding-left: 30px;">交易时间：</p>
+                <p style="text-align: left; padding-left: 30px;">附加条款：</p>
+            </div>
         </div>
-        <div class="collapse-card__body" style="background: #ffffff;">
-            <span th:text="${demand.desc}"></span>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="services-group wow animated zoomIn" data-wow-offset="40">
+                <h4 class="services-title">合约名称</h4>
+                <div class="col-md-6">
+                    <p class="services-body">买方：</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="services-body">卖方：</p>
+                </div>
+                <p style="text-align: left; padding-left: 30px;">合约标的：</p>
+                <p style="text-align: left; padding-left: 30px;">交易数量：</p>
+                <p style="text-align: left; padding-left: 30px;">交易总价：</p>
+                <p style="text-align: left; padding-left: 30px;">交易时间：</p>
+                <p style="text-align: left; padding-left: 30px;">附加条款：</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="services-group wow animated fadeInRight" data-wow-offset="40">
+                <h4 class="services-title">合约名称</h4>
+                <div class="col-md-6">
+                    <p class="services-body">买方：</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="services-body">卖方：</p>
+                </div>
+                <p style="text-align: left; padding-left: 30px;">合约标的：</p>
+                <p style="text-align: left; padding-left: 30px;">交易数量：</p>
+                <p style="text-align: left; padding-left: 30px;">交易总价：</p>
+                <p style="text-align: left; padding-left: 30px;">交易时间：</p>
+                <p style="text-align: left; padding-left: 30px;">附加条款：</p>
+            </div>
         </div>
     </div>
 

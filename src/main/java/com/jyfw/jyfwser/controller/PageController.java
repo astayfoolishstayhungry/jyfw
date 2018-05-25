@@ -63,6 +63,18 @@ public class PageController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/admin")
+    public ModelAndView getAdminPage(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user) {
+            modelAndView.addObject("user", user);
+        }
+        modelAndView.setViewName("admin");
+        return modelAndView;
+    }
+
     @GetMapping(value = "/demand")
     public ModelAndView getDemandPage(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();

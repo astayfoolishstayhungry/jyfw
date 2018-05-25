@@ -61,7 +61,8 @@
                        aria-expanded="false">欢迎！<span th:text="${user.name}"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/mycontact">我的合约</a></li>
-                        <li><a href="/mypage">个人主页</a></li>
+                        <li><a href="/mydemand">我的需求</a></li>
+                        <li><a href="/mytopic">我的话题</a></li>
                         <li><a href="/logout">安全退出</a></li>
                     </ul>
                 </li>
@@ -74,25 +75,36 @@
     <img src="images/slider/slide9.jpg" width="100%" class="blog-post" alt="Feature-img" align="right"/>
 </div>
 
-<div class="container text-center">
-    <span class="button-wrap">
-        <a href="/demandadd" class="button button-pill button-raised button-primary">发布金融交易合约</a>
-    </span>
-    <div id="banners"></div>
-    <p class="bg-info"><span th:text="${saveInfo}"></span></p>
 
-    <div class="collapse-card" th:each="demand, demandStat : ${savedDemands}">
-        <div class="collapse-card__heading"  style="background: #ffffff;">
-            <span th:text="${demand.dealTimeFormat}"></span> -- <span th:text="${demand.dealObject}"></span><p></p>
-            <span th:text="${demand.dealNum}"></span> -- <span th:text="${demand.dealPrice}"></span>
+    <div class="topic-discuss-title ">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6" style="padding-left: 30px; padding-top: 15px;">
+                <p class="demand-item-title topic-title">话题名称</p>
+            </div>
+            <div class="col-md-2" style="padding-top: 10px;">
+                <p class="demand-item-detail">用户名</p>
+            </div>
+            <div class="col-md-2" style="padding-top: 10px;">
+                <p class="demand-item-detail date">发布时间</p>
+            </div>
         </div>
-        <div class="collapse-card__body" style="background: #ffffff;">
-            <span th:text="${demand.desc}"></span>
+        <p style="padding-left: 245px;" >话题描述......</p>
+        <hr/>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <p style="padding-left: 15px;">评论内容1</p>
+            </div>
+            <div class="col-md-2 demand-item-detail">用户名</div>
+            <div class="col-md-2 demand-item-detail date">发布时间</div>
         </div>
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2 demand-item-detail date">回复</div>
+        </div>
+        <hr/>
     </div>
-
-</div>
-
 
 <div class="copyright text-center" style="margin-top: 30px;">
     <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
