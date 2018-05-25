@@ -74,23 +74,45 @@
     <img src="images/slider/slide9.jpg" width="100%" class="blog-post" alt="Feature-img" align="right"/>
 </div>
 
-<div class="container text-center">
-    <span class="button-wrap">
-        <a href="/demandadd" class="button button-pill button-raised button-primary">发布金融交易合约</a>
-    </span>
-    <div id="banners"></div>
-    <p class="bg-info"><span th:text="${saveInfo}"></span></p>
-
-    <div class="collapse-card" th:each="demand, demandStat : ${savedDemands}">
-        <div class="collapse-card__heading"  style="background: #ffffff;">
-            <span th:text="${demand.dealTimeFormat}"></span> -- <span th:text="${demand.dealObject}"></span><p></p>
-            <span th:text="${demand.dealNum}"></span> -- <span th:text="${demand.dealPrice}"></span>
+<div class="container" style="padding-bottom: 36px;">
+    <div class="features-section">
+        <h3 style="text-align: center; margin-bottom: 48px;">请您完善如下表？</h3>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <p>发布人姓名：</p>
+            <p th:text="${confirmDemand.name}"></p>
+            <p>身份：</p>
+            <p th:text="${confirmDemand.category}"></p>
+            <p>合约标的：</p>
+            <p th:text="${confirmDemand.dealObject}"></p>
+            <p>交易数量：</p>
+            <p th:text="${confirmDemand.dealNum}"></p>
+            <p>交易价格：</p>
+            <p th:text="${confirmDemand.dealPrice}"></p>
+            <p>交易日期：</p>
+            <p class="dealtime" th:attr="data-dealtime=''+${confirmDemand.dealTime}"></p>
         </div>
-        <div class="collapse-card__body" style="background: #ffffff;">
-            <span th:text="${demand.desc}"></span>
+        <div class="col-md-4">
+            <form>
+                <p>我的姓名</p>
+                <p th:text="${user.name}"></p>
+                <p>身份</p>
+                <p id="category" th:attr="data-category=''+${confirmDemand.category}"></p>
+                <p>合约标的</p>
+                <p th:text="${confirmDemand.dealObject}"></p>
+                <p>交易数量</p>
+                <p th:text="${confirmDemand.dealNum}"></p>
+                <p>交易价格</p>
+                <p th:text="${confirmDemand.dealPrice}"></p>
+                <p>交易日期</p>
+                <p class="dealtime" th:attr="data-dealtime=''+${confirmDemand.dealTime}"></p>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">确定预约，生成合同</button>
         </div>
     </div>
-
 </div>
 
 
@@ -103,9 +125,26 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/wow.min.js"></script>
 <script type="text/javascript" src="js/paper-collapse.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript">
     new WOW().init();
     $('.collapse-card').paperCollapse();
+
+    $(function () {
+        var dealtime = $(".dealtime").attr("data-dealtime");
+        $(".dealtime").html(timeExchange(dealtime));
+
+        var category = $("#category").attr("data-category");
+        $("#category").html(humenBeingExchange(category))
+    })
+
+    function humenBeingExchange(category) {
+        if(category == "卖方") {
+            return "买方";
+        }else {
+            return "卖方";
+        }
+    }
 </script>
 
 </body>

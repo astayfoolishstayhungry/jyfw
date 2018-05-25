@@ -1,5 +1,6 @@
 package com.jyfw.jyfwser.service;
 
+import com.jyfw.jyfwser.pojo.entity.ConfirmDemandEntity;
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
 
 import java.util.List;
@@ -23,5 +24,7 @@ public interface DemandService {
      * @return
      */
     List<DemandEntity> listDemandByStatus(Integer page, Integer count, Integer status, String dealObject);
+
+    ConfirmDemandEntity getDemandByDemandId(Integer demandId);
 
 }

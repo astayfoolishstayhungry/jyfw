@@ -2,6 +2,7 @@ package com.jyfw.jyfwser.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.jyfw.jyfwser.mapper.DemandMapper;
+import com.jyfw.jyfwser.pojo.entity.ConfirmDemandEntity;
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
 import com.jyfw.jyfwser.service.DemandService;
 import com.jyfw.jyfwser.util.DateUtil;
@@ -44,5 +45,10 @@ public class DemandServiceImpl implements DemandService {
             }
         }
         return demands;
+    }
+
+    @Override
+    public ConfirmDemandEntity getDemandByDemandId(Integer demandId) {
+        return demandMapper.getDemandByDemandId(demandId);
     }
 }

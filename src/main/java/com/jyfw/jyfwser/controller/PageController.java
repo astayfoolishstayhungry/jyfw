@@ -3,10 +3,7 @@ package com.jyfw.jyfwser.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.jyfw.jyfwser.pojo.Const;
 import com.jyfw.jyfwser.pojo.em.DemandStatusEnum;
-import com.jyfw.jyfwser.pojo.entity.CommentEntity;
-import com.jyfw.jyfwser.pojo.entity.DemandEntity;
-import com.jyfw.jyfwser.pojo.entity.TopicEntity;
-import com.jyfw.jyfwser.pojo.entity.UserEntity;
+import com.jyfw.jyfwser.pojo.entity.*;
 import com.jyfw.jyfwser.pojo.vo.JuHeData;
 import com.jyfw.jyfwser.pojo.vo.JuHeResult;
 import com.jyfw.jyfwser.pojo.vo.NewsVO;
@@ -255,6 +252,22 @@ public class PageController {
 
             modelAndView.addObject("user", user);
             modelAndView.setViewName("topic");
+        }else {
+            modelAndView.addObject("errorInfo","请先登录！");
+            modelAndView.setViewName("login");
+        }
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/confirmdemand")
+    public ModelAndView getConfirmDemand(HttpSession session, Integer demandId) {
+        ModelAndView modelAndView = new ModelAndView();
+        UserEntity user = (UserEntity)session.getAttribute("user");
+        if(null != user ) {
+            ConfirmDemandEntity confirmDemand = demandService.getDemandByDemandId(demandId);
+            modelAndView.addObject("confirmDemand",confirmDemand);
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("confirmdemand");
         }else {
             modelAndView.addObject("errorInfo","请先登录！");
             modelAndView.setViewName("login");

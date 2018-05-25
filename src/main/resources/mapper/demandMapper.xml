@@ -18,5 +18,11 @@
         </if>
     </select>
 
+    <select id="getDemandByDemandId" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.ConfirmDemandEntity">
+        SELECT u.`name`,d.category, d.dealObject, d.dealNum, d.dealPrice, d.dealTime
+        FROM demand d LEFT JOIN `user` u ON d.uid = u.uid
+        WHERE d.id = #{demandId};
+    </select>
+
 
 </mapper>

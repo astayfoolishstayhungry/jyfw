@@ -111,6 +111,10 @@
 
 <div id="banners"></div>
 
+<div class="container pages text-right">
+    <ul class="pagination">
+    </ul>
+</div>
 
 <div class="copyright text center">
     <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
@@ -145,6 +149,7 @@
             type: 'POST',
             success: function (result) {
                 if(result.success) {
+                    loadPageInfo(result.data);
                     $("#demand-item").empty();
                     loadPageInfo(result.data);
                     $(result.data.list).each(function (i, item) {
@@ -158,7 +163,7 @@
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-price">' + item.dealPrice + '</span><p class="demand-item-detail">交易价格</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-num">' + timeExchange(item.dealTime) + '</span><p class="demand-item-detail">交易日期</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-object">' + demandStatusExchange(item.status) + '</span><p class="demand-item-detail">合约状态</p></div>';
-                        pageStr = pageStr + '<div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary" onclick="getDemandDetail('+ item.id + ')">请求匹配</button></a></div>';
+                        pageStr = pageStr + '<div class="col-md-2"><a class="jyfw-section"><button type="button" class="btn btn-primary" onclick="confirmdemand('+ item.id + ')">请求匹配</button></a></div>';
                         pageStr = pageStr + '</div>';
                         pageStr = pageStr + '</div>';
                         $("#demand-item").append(pageStr);
@@ -170,6 +175,9 @@
         })
     }
 
+    function confirmdemand(demandId) {
+        window.location.href = 'confirmdemand?demandId=' + demandId;
+    }
 
 </script>
 

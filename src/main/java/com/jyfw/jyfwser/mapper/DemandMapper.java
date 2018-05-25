@@ -1,5 +1,6 @@
 package com.jyfw.jyfwser.mapper;
 
+import com.jyfw.jyfwser.pojo.entity.ConfirmDemandEntity;
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
 import com.jyfw.jyfwser.pojo.entity.UserEntity;
 import org.apache.ibatis.annotations.Param;
@@ -25,5 +26,7 @@ public interface DemandMapper {
      * @return
      */
     List<DemandEntity> listDemandByStatus(@Param("status") Integer status, @Param("dealObject") String dealObject);
+
+    ConfirmDemandEntity getDemandByDemandId(Integer demandId);
 
 }
