@@ -23,8 +23,10 @@ public interface DemandService {
      * @param status
      * @return
      */
-    List<DemandEntity> listDemandByStatus(Integer page, Integer count, Integer status, String dealObject);
+    List<DemandEntity> listDemandByStatus(Integer page, Integer count, Integer status,  String category, String dealObject);
 
     ConfirmDemandEntity getDemandByDemandId(Integer demandId);
+
+    void updateDemandDoneByDemandId(Integer demandId);
 
 }

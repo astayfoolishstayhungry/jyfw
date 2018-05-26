@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jyfw.jyfwser.mapper.ContactMapper">
+
+    <insert id="insertContract" parameterType="com.jyfw.jyfwser.pojo.entity.ContactEntity">
+      INSERT INTO `contract` (`sellerUid`, `sellername`, `buyerUid`,`buyername`,`dealTime`,
+      `dealObject`,`dealNum`,`dealprice`,`status`,`desc`
+      ) VALUES (
+      #{sellerUid},#{sellername},#{buyerUid},#{buyername},#{dealTime},#{dealObject},
+      #{dealNum},#{dealprice},#{status},#{desc}
+      )
+    </insert>
+
+    <select id="listContactByUid" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.ContactEntity">
+        SELECT
+            *
+        FROM
+            `contract`
+        WHERE
+            `sellerUid` = #{uid}
+            OR `buyerUid` = #{uid}
+        GROUP BY
+            createTime
+        ORDER BY
+            createTime DESC
+    </select>
+
+    <select id="listContactLimitSix" resultType="com.jyfw.jyfwser.pojo.entity.ContactEntity">
+        SELECT *
+        FROM `contract`
+        GROUP BY `createTime`
+        ORDER BY `createTime` DESC
+        LIMIT 6
+    </select>
+
+</mapper>

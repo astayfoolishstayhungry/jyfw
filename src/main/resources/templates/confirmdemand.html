@@ -75,47 +75,35 @@
     <img src="images/slider/slide9.jpg" width="100%" class="blog-post" alt="Feature-img" align="right"/>
 </div>
 
-<div class="container" style="padding-bottom: 36px;">
-    <div class="features-section">
-        <h3 style="text-align: center; margin-bottom: 48px;">请您完善如下表？</h3>
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-            <p>发布人姓名：</p>
-            <p th:text="${confirmDemand.name}"></p>
-            <p>身份：</p>
-            <p th:text="${confirmDemand.category}"></p>
-            <p>合约标的：</p>
-            <p th:text="${confirmDemand.dealObject}"></p>
-            <p>交易数量：</p>
-            <p th:text="${confirmDemand.dealNum}"></p>
-            <p>交易价格：</p>
-            <p th:text="${confirmDemand.dealPrice}"></p>
-            <p>交易日期：</p>
-            <p class="dealtime" th:attr="data-dealtime=''+${confirmDemand.dealTime}"></p>
-        </div>
-        <div class="col-md-4">
-            <form>
-                <p>我的姓名</p>
-                <p th:text="${user.name}"></p>
-                <p>身份</p>
-                <p id="category" th:attr="data-category=''+${confirmDemand.category}"></p>
-                <p>合约标的</p>
-                <p th:text="${confirmDemand.dealObject}"></p>
-                <p>交易数量</p>
-                <p th:text="${confirmDemand.dealNum}"></p>
-                <p>交易价格</p>
-                <p th:text="${confirmDemand.dealPrice}"></p>
-                <p>交易日期</p>
-                <p class="dealtime" th:attr="data-dealtime=''+${confirmDemand.dealTime}"></p>
-            </form>
+<section class="container">
+    <div class=" row">
+        <div style="height:20px;" class="col-md-2"></div>
+        <div class="aui-content-up col-md-8">
+            <div class="row" style="background: #fff; padding-bottom: 30px; border: 1px solid #ccc;">
+                <h3 style="text-align: center; padding-bottom: 15px; padding-top: 10px;">合约名称</h3>
+                <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
+                    <span id="category" th:text="${confirmDemand.category}"></span>：
+                    <span class="existsUid" th:if="${confirmDemand.category == '卖方'}" th:attr="data-selleruid=''+${confirmDemand.uid}" th:text="${confirmDemand.name}"></span>
+                    <span class="existsUid" th:if="${confirmDemand.category == '买方'}" th:attr="data-buyeruid=''+${confirmDemand.uid}" th:text="${confirmDemand.name}"></span>
+                </div>
+                <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
+                    <span class="mycategory" th:if="${confirmDemand.category == '卖方'}">买方</span>
+                    <span class="mycategory" th:if="${confirmDemand.category == '买方'}">卖方</span>：
+                    <span id="myuid" th:attr="data-uid=''+${user.uid}" th:text="${user.name}"></span>
+                </div>
+                <p style="padding-left: 30px;">合约标的：<span id="dealobject" th:text="${confirmDemand.dealObject}"></span></p>
+                <p style="padding-left: 30px;">交易数量：<span id="dealnum" th:text="${confirmDemand.dealNum}"></span></p>
+                <p style="padding-left: 30px;">交易总价：<span id="dealprice" th:text="${confirmDemand.dealPrice}"></span></p>
+                <p style="padding-left: 30px;">交割日期：<span class="dealtime" th:attr="data-dealtime=''+${confirmDemand.dealTime}"></span></p>
+                <p style="padding-left: 30px;">合约条款：<span id="desc" th:text="${confirmDemand.desc}"></span></p>
+            </div>
+            <div class="aui-btn-default" style="text-align: center; padding-top: 30px;">
+                <button type="button" th:attr="data-demandId=''+${demandId}" class="btn btn-primary" id="pullContact">确定，生成合约</button>
+            </div>
         </div>
         <div class="col-md-2"></div>
-        <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">确定预约，生成合同</button>
-        </div>
     </div>
-</div>
-
+</section>
 
 <div class="copyright text-center" style="margin-top: 30px;">
     <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
@@ -134,18 +122,51 @@
     $(function () {
         var dealtime = $(".dealtime").attr("data-dealtime");
         $(".dealtime").html(timeExchange(dealtime));
-
-        var category = $("#category").attr("data-category");
-        $("#category").html(humenBeingExchange(category))
     })
 
     function humenBeingExchange(category) {
-        if(category == "卖方") {
+        if (category == "卖方") {
             return "买方";
-        }else {
+        } else {
             return "卖方";
         }
     }
+
+    $("body").on("click", "#pullContact", function () {
+        var category      = $("#category").text();
+        var existsname     = $(".existsUid").text();
+        var existsUid     = $(".existsUid").attr("data-selleruid");
+        var myuid         = $("#myuid").attr("data-uid");
+        var dealobject    = $("#dealobject").text();
+        var dealnum       = $("#dealnum").text();
+        var dealprice     = $("#dealprice").text();
+        var dealtime      = $(".dealtime").text();
+        var desc          = $("#desc").text();
+        var demandId      = $("#pullContact").attr("data-demandId");
+        $.ajax({
+            url: '/insertContact',
+            data: {
+                "category": category  ,
+                "existsname": existsname,
+                "existsUid": existsUid ,
+                "myuid": myuid,
+                "dealobject": dealobject,
+                "dealnum": dealnum   ,
+                "dealprice": dealprice ,
+                "dealtime": dealtime  ,
+                "desc": desc,
+                "demandId": demandId
+            },
+            type: 'POST',
+            success: function (result) {
+                if(result.success) {
+                    alert("预约成功!");
+                    window.location.href = '/mycontact';
+                }
+            }
+        })
+    })
+
 </script>
 
 </body>

@@ -26,4 +26,10 @@ public interface UserMapper {
 
     UserEntity getUserByDemandId(Integer demandId);
 
+    Integer getUserCount();
+
+    Integer getContactCount();
+
+    Integer getContactAmountSum();
+
 }

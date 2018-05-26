@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -28,8 +30,16 @@ public class RestDemandController {
     private UserService userService;
 
     @PostMapping(value = "/demands")
-    public JsonResult getDemands(Integer page, Integer count, Integer status, String dealObject) {
-        List<DemandEntity> demands = demandService.listDemandByStatus(page, count, status, dealObject);
+    public JsonResult getDemands(HttpSession session,Integer page, Integer count, Integer status, String category, String dealObject) {
+        UserEntity currentUser = (UserEntity) session.getAttribute("user");
+        List<DemandEntity> demands = demandService.listDemandByStatus(page, count, status, category, dealObject);
+        Iterator<DemandEntity> iterator = demands.iterator();
+        while (iterator.hasNext()) {
+            DemandEntity nextDemand = iterator.next();
+            if(nextDemand.getUid().equals(currentUser.getUid())) {
+                iterator.remove();
+            }
+        }
         List<DemandVO> demandVOS = new ArrayList<>();
         for (DemandEntity demand : demands) {
             DemandVO demandVO = new DemandVO();

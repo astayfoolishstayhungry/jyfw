@@ -2,6 +2,7 @@ package com.jyfw.jyfwser.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.jyfw.jyfwser.mapper.DemandMapper;
+import com.jyfw.jyfwser.pojo.em.DemandStatusEnum;
 import com.jyfw.jyfwser.pojo.entity.ConfirmDemandEntity;
 import com.jyfw.jyfwser.pojo.entity.DemandEntity;
 import com.jyfw.jyfwser.service.DemandService;
@@ -31,11 +32,15 @@ public class DemandServiceImpl implements DemandService {
     }
 
     @Override
-    public List<DemandEntity> listDemandByStatus(Integer page, Integer count, Integer status, String dealObject) {
+    public List<DemandEntity> listDemandByStatus(Integer page, Integer count, Integer status, String category,
+                                                 String dealObject) {
         if(page != null && count != null) {
             PageHelper.startPage(page, count);
         }
-        List<DemandEntity> demands = demandMapper.listDemandByStatus(status, dealObject);
+        if(dealObject == "") {
+            dealObject = null;
+        }
+        List<DemandEntity> demands = demandMapper.listDemandByStatus(status, dealObject, category);
         for (DemandEntity demand : demands) {
             Date dealTime = demand.getDealTime();
             if(null != dealTime) {
@@ -50,5 +55,10 @@ public class DemandServiceImpl implements DemandService {
     @Override
     public ConfirmDemandEntity getDemandByDemandId(Integer demandId) {
         return demandMapper.getDemandByDemandId(demandId);
+    }
+
+    @Override
+    public void updateDemandDoneByDemandId(Integer demandId) {
+        demandMapper.updateDemandStatusByDid(demandId, DemandStatusEnum.VALIDATORING.getCode());
     }
 }

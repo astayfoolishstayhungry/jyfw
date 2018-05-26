@@ -7,9 +7,7 @@ import com.jyfw.jyfwser.pojo.entity.*;
 import com.jyfw.jyfwser.pojo.vo.JuHeData;
 import com.jyfw.jyfwser.pojo.vo.JuHeResult;
 import com.jyfw.jyfwser.pojo.vo.NewsVO;
-import com.jyfw.jyfwser.service.CommentService;
-import com.jyfw.jyfwser.service.DemandService;
-import com.jyfw.jyfwser.service.TopicService;
+import com.jyfw.jyfwser.service.*;
 import com.jyfw.jyfwser.util.DateUtil;
 import com.jyfw.jyfwser.util.http.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 页面控制器
@@ -38,6 +38,12 @@ public class PageController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private ContactService contactService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/")
     public ModelAndView getHomePage(HttpServletRequest request) {
@@ -59,6 +65,14 @@ public class PageController {
         if(null != user) {
             modelAndView.addObject("user", user);
         }
+        List<ContactEntity> contacts = contactService.listContactLimitSix();
+        Integer userCount = userService.getUserCount();
+        Integer contactCount = userService.getContactCount();
+        Integer contactAmountSum = userService.getContactAmountSum();
+        modelAndView.addObject("userCount", userCount);
+        modelAndView.addObject("contactCount", contactCount);
+        modelAndView.addObject("contactAmountSum", contactAmountSum);
+        modelAndView.addObject("contacts", contacts);
         modelAndView.setViewName("index");
         return modelAndView;
     }
@@ -154,7 +168,7 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
-            List<DemandEntity> savedDemands = demandService.listDemandByStatus(null,null,DemandStatusEnum.UNVALIDATOR.getCode(), null);
+            List<DemandEntity> savedDemands = demandService.listDemandByStatus(null,null, DemandStatusEnum.UNVALIDATOR.getCode(), null,null);
             for (DemandEntity demand : savedDemands) {
                 demand.setDealTimeFormat(DateUtil.parseDateToStr(demand.getDealTime(), DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
             }
@@ -174,12 +188,8 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
-            List<DemandEntity> savedDemands = demandService.listDemandByStatus(null, null,DemandStatusEnum.UNVALIDATOR.getCode(), null);
-            for (DemandEntity demand : savedDemands) {
-                demand.setDealTimeFormat(DateUtil.parseDateToStr(demand.getDealTime(), DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
-            }
-            //TODO 列举其他状态的需求
-            modelAndView.addObject("savedDemands", savedDemands);
+            List<ContactEntity> contacts = contactService.listContactByUid(user.getUid());
+            modelAndView.addObject("contacts", contacts);
             modelAndView.addObject("user", user);
             modelAndView.setViewName("mycontact");
         }else {
@@ -290,6 +300,7 @@ public class PageController {
         if(null != user ) {
             ConfirmDemandEntity confirmDemand = demandService.getDemandByDemandId(demandId);
             modelAndView.addObject("confirmDemand",confirmDemand);
+            modelAndView.addObject("demandId",demandId);
             modelAndView.addObject("user", user);
             modelAndView.setViewName("confirmdemand");
         }else {

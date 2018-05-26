@@ -25,8 +25,11 @@ public interface DemandMapper {
      * @param status
      * @return
      */
-    List<DemandEntity> listDemandByStatus(@Param("status") Integer status, @Param("dealObject") String dealObject);
+    List<DemandEntity> listDemandByStatus(@Param("status") Integer status, @Param("dealObject") String dealObject,
+                                          @Param("category") String category);
 
     ConfirmDemandEntity getDemandByDemandId(Integer demandId);
+
+    void updateDemandStatusByDid(@Param("demandId") Integer demandId, @Param("status") Integer status);
 
 }

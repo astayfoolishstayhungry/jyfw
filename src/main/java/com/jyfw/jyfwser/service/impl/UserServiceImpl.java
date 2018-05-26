@@ -31,4 +31,19 @@ public class UserServiceImpl implements UserService {
     public UserEntity getUserByDemandId(Integer demandId) {
         return userMapper.getUserByDemandId(demandId);
     }
+
+    @Override
+    public Integer getUserCount() {
+        return userMapper.getUserCount();
+    }
+
+    @Override
+    public Integer getContactCount() {
+        return userMapper.getContactCount();
+    }
+
+    @Override
+    public Integer getContactAmountSum() {
+        return userMapper.getContactAmountSum();
+    }
 }

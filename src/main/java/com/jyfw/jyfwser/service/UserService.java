@@ -25,4 +25,10 @@ public interface UserService {
 
     UserEntity getUserByDemandId(Integer demandId);
 
+    Integer getUserCount();
+
+    Integer getContactCount();
+
+    Integer getContactAmountSum();
+
 }

@@ -17,4 +17,16 @@
         LEFT JOIN `user` u ON d.uid = u.uid
         WHERE d.id = #{demandId};
     </select>
+
+    <select id="getUserCount" resultType="integer">
+        SELECT COUNT(1) FROM `user`
+    </select>
+
+    <select id="getContactCount" resultType="integer">
+        SELECT COUNT(1) FROM `contract`
+    </select>
+
+    <select id="getContactAmountSum" resultType="integer">
+        SELECT SUM(`dealPrice`) FROM `contract`
+    </select>
 </mapper>

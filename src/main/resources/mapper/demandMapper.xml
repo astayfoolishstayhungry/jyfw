@@ -11,19 +11,28 @@
         );
     </insert>
 
-    <select id="listDemandByStatus" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.DemandEntity">
+    <select id="listDemandByStatus" parameterType="map" resultType="com.jyfw.jyfwser.pojo.entity.DemandEntity">
         SELECT * FROM `demand` WHERE `status` = #{status}
+        <if test="category != null and category != ''">
+            AND category = #{category}
+        </if>
         <if test="dealObject != null and dealObject != ''">
-            and dealObject like #{dealObject}
+            and dealObject like CONCAT('%',#{dealObject},'%')
         </if>
         GROUP BY createTime ORDER BY createTime DESC
     </select>
 
     <select id="getDemandByDemandId" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.ConfirmDemandEntity">
-        SELECT u.`name`,d.category, d.dealObject, d.dealNum, d.dealPrice, d.dealTime
+        SELECT u.uid, u.`name`,d.category, d.dealObject, d.dealNum, d.dealPrice, d.dealTime, d.desc
         FROM demand d LEFT JOIN `user` u ON d.uid = u.uid
         WHERE d.id = #{demandId};
     </select>
+
+    <update id="updateDemandStatusByDid" parameterType="map">
+        UPDATE `demand`
+        SET `status` = #{status}
+        WHERE `id` = #{demandId}
+    </update>
 
 
 </mapper>

@@ -12,11 +12,13 @@ import java.util.Date;
 @Data
 public class ConfirmDemandEntity {
 
+    private String uid;
     private String name;
     private String category;
     private String dealObject;
     private Integer dealNum;
     private Integer dealPrice;
     private Date dealTime;
+    private String desc;
 
 }
