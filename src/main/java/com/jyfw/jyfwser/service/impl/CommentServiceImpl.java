@@ -25,5 +25,15 @@ public class CommentServiceImpl implements CommentService {
         return commentMapper.listCommentByObjectId(objectId);
     }
 
+    @Override
+    public List<CommentEntity> listComment() {
+        return commentMapper.listAllComment();
+    }
+
+    @Override
+    public void deleteComment(Integer cid) {
+        commentMapper.updateCommentStatusByCid(cid, 2);
+    }
+
 
 }

@@ -32,4 +32,8 @@ public interface DemandMapper {
 
     void updateDemandStatusByDid(@Param("demandId") Integer demandId, @Param("status") Integer status);
 
+    List<DemandEntity> listDemand();
+
+    List<DemandEntity> listDemandByUid(Integer uid);
+
 }

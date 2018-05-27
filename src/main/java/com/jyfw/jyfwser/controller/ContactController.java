@@ -43,8 +43,8 @@ public class ContactController {
         }else {
             contact.setBuyerUid(existsUid);
             contact.setBuyername(existsname);
-            contact.setSellerUid(existsUid);
-            contact.setSellername(existsname);
+            contact.setSellerUid(user.getUid());
+            contact.setSellername(user.getName());
         }
         contact.setDealObject(dealobject);
         contact.setDealNum(dealnum);

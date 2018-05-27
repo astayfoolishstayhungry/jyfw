@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>金融远期合约交易服务平台-后台管理平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
+    <link rel="icon" href="images/logo/logo.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="images/logo/logo.png" type="image/x-icon"/>
+    <meta name="robots" content="index,follow"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="header">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="logo">
+                    <h1><a href="index.html">金融远期合约交易服务-后台管理</a></h1>
+                </div>
+            </div>
+            <div class="col-md-5">
+
+            </div>
+            <div class="col-md-2">
+                <div class="navbar navbar-inverse" role="banner">
+                    <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/adminlogout">安全退出</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content" id="adminapp">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <li><a href="/adminpage"><i class="glyphicon glyphicon-calendar"></i>需求信息在线监控</a></li>
+                    <li class="current"><a href="/admintopic"><i class="glyphicon glyphicon-calendar"></i>话题信息在线监控</a></li>
+                    <li><a href="/admincomments"><i class="glyphicon glyphicon-calendar"></i>评论信息在线监控</a></li>
+                    <li><a href="/adminusers"><i class="glyphicon glyphicon-calendar"></i>用户列表</a></li>
+                    <li><a href="/adminerlist"><i class="glyphicon glyphicon-list"></i> 管理员列表</a></li>
+                    <li><a href="/admineradd"><i class="glyphicon glyphicon-plus-sign"></i> 添加管理员</a></li>
+                    <li><a href="/adminerdelete"><i class="glyphicon glyphicon-remove-sign"></i>删除管理员</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        话题管理
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>话题名称</th>
+                                <th>话题内容</th>
+                                <th>话题状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="topic, topicStat : ${topics}">
+                                <td th:text="${topic.id}">1</td>
+                                <td th:text="${topic.topicName}"></td>
+                                <td th:text="${topic.content}"></td>
+                                <td th:text="${topic.status}">1</td>
+                                <td>
+                                    <a th:href="'deleteTopic?topicId='+${topic.id}">删除</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="copy text-center">
+            <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
+            <p>作者：140104300123 陈璐</p>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

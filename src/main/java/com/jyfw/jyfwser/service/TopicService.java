@@ -12,4 +12,10 @@ public interface TopicService {
 
     TopicEntity getTopicById(Integer topicId);
 
+    List<TopicEntity> listAllTopic();
+
+    void delteTopicByTid(Integer tid);
+
+    List<TopicEntity> listTopicByUid(Integer uid);
+
 }

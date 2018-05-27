@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>交易服务-登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="交易服务"/>
+    <meta name="author" content="陈璐"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/animate.min.css"/>
+    <link href="css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="assets/ico/favicon.ico"/>
+</head>
+
+<body>
+
+<nav id="navbar-section" class="navbar navbar-default navbar-static-top navbar-sticky" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-responsive-collapse">
+                <span class="sr-only">菜单</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- 网站名 -->
+        <a class="navbar-brand" href="#">金融远期合约交易服务平台管理员登录</a>
+
+    </div>
+</nav>
+
+<div class="container-fluid-kamn" style="padding-bottom: 60px;">
+    <div class="row">
+        <div>
+            <img src="images/slider/slide10.jpg" class="blog-post" alt="Feature-img" align="right" width="100%"/>
+            <br/>
+        </div>
+        <div class="col-lg-4 col-lg-offset-1">
+            <h3><span th:text="${errorInfo}"></span></h3>
+        </div>
+        <div class="col-lg-5">
+            <div class="feedback-form">
+
+                <div id="contact-response"></div>
+                <form th:action="@{/adminlogin}" th:method="post" id="loginForm">
+                    <div class="form-group">
+                        <label>管理员账号</label>
+                        <input type="text" class="form-control" name="adminName" placeholder="请输入用户名"/>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" class="form-control" name="password" placeholder="请输入密码"/>
+                        <span class="label label-danger" th:text="${loginInfo}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>验证码</label>
+                        <img alt="验证码" onclick="this.src='getValidatorImg?d='+new Date()*1" src="getValidatorImg"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="imgValidatorCode" placeholder="请输入验证码"/>
+                        <span class="label label-danger" th:text="${imgValidatorInfo}"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="copyright text center">
+    <p>Copyright &copy; 2018.交易服务 All rights reserved.</p>
+    <p>作者：140104300123 陈璐</p>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+<!--表单验证-->
+<script type="text/javascript">
+    $('#loginForm').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: "手机号码不能为空"
+                    },
+                    stringLength: {
+                        min: 11,
+                        max: 11,
+                        message: '请输入11位手机号码'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: "密码不能为空"
+                    }
+                }
+            },
+            imgValidatorCode : {
+                validators: {
+                    notEmpty: {
+                        message: "验证码不能为空"
+                    }
+                }
+            }
+        }
+    });
+    /*$('#loginBtn').click(function () {
+        $('#loginForm').bootstrapValidator('validate');
+    });*/
+
+</script>
+
+</body>
+
+</html>

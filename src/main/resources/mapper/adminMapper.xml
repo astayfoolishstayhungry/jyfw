@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jyfw.jyfwser.mapper.AdminMapper">
+
+    <select id="getAdminByPhoneAndPassword" parameterType="map" resultType="com.jyfw.jyfwser.pojo.entity.AdminEntity">
+        SELECT * FROM `admin` WHERE `adminName`=#{adminName} AND `password`=#{password} LIMIT 1;
+    </select>
+
+    <select id="getAdminByDemandId" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.AdminEntity">
+        SELECT u.* FROM `demand` d
+        LEFT JOIN `user` u ON d.uid = u.uid
+        WHERE d.id = #{demandId};
+    </select>
+
+    <select id="listAdmin" resultType="com.jyfw.jyfwser.pojo.entity.AdminEntity">
+        SELECT * FROM `admin`
+    </select>
+
+    <update id="deleteAdmin" parameterType="integer">
+        update `admin`
+        set `status` = 2
+        where adminId = #{adminId}
+    </update>
+
+    <insert id="insertAdmin" parameterType="com.jyfw.jyfwser.pojo.entity.AdminEntity">
+        insert into `admin` (`adminName`,`password`,`realName`,`phone`,`status`) VALUES (
+        #{adminName},#{password},#{realName},#{phone},#{status}
+        )
+    </insert>
+
+</mapper>

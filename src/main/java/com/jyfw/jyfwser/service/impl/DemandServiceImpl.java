@@ -61,4 +61,20 @@ public class DemandServiceImpl implements DemandService {
     public void updateDemandDoneByDemandId(Integer demandId) {
         demandMapper.updateDemandStatusByDid(demandId, DemandStatusEnum.VALIDATORING.getCode());
     }
+
+    @Override
+    public void updateDemandCancelByDemandId(Integer demandId) {
+        demandMapper.updateDemandStatusByDid(demandId, DemandStatusEnum.VALIDATOR_FAILED.getCode());
+    }
+
+
+    @Override
+    public List<DemandEntity> listDemand() {
+        return demandMapper.listDemand();
+    }
+
+    @Override
+    public List<DemandEntity> listDemandByUid(Integer uid) {
+        return demandMapper.listDemandByUid(uid);
+    }
 }

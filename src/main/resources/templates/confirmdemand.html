@@ -83,8 +83,8 @@
                 <h3 style="text-align: center; padding-bottom: 15px; padding-top: 10px;">合约名称</h3>
                 <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
                     <span id="category" th:text="${confirmDemand.category}"></span>：
-                    <span class="existsUid" th:if="${confirmDemand.category == '卖方'}" th:attr="data-selleruid=''+${confirmDemand.uid}" th:text="${confirmDemand.name}"></span>
-                    <span class="existsUid" th:if="${confirmDemand.category == '买方'}" th:attr="data-buyeruid=''+${confirmDemand.uid}" th:text="${confirmDemand.name}"></span>
+                    <span class="existsUid" th:if="${confirmDemand.category == '卖方'}" th:attr="data-existsuid=''+${confirmDemand.uid}" th:text="${confirmDemand.name}"></span>
+                    <span class="existsUid" th:if="${confirmDemand.category == '买方'}" th:attr="data-existsuid=''+${confirmDemand.uid}" th:text="${confirmDemand.name}"></span>
                 </div>
                 <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
                     <span class="mycategory" th:if="${confirmDemand.category == '卖方'}">买方</span>
@@ -135,7 +135,7 @@
     $("body").on("click", "#pullContact", function () {
         var category      = $("#category").text();
         var existsname     = $(".existsUid").text();
-        var existsUid     = $(".existsUid").attr("data-selleruid");
+        var existsUid     = $(".existsUid").attr("data-existsuid");
         var myuid         = $("#myuid").attr("data-uid");
         var dealobject    = $("#dealobject").text();
         var dealnum       = $("#dealnum").text();

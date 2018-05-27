@@ -25,4 +25,21 @@
         WHERE t.id = #{topicId} AND t.`status` = 1
     </select>
 
+    <select id="listAllTopic" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.TopicEntity">
+        SELECT * FROM `topic`
+        GROUP BY createTime
+        ORDER BY createTime DESC
+    </select>
+
+    <update id="updateTopicStatusByTid" parameterType="map">
+        UPDATE `topic`
+        SET `status` = #{status}
+        WHERE `id` = #{tid}
+    </update>
+
+    <select id="listTopicByUid" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.TopicEntity">
+        SELECT * FROM `topic`
+        WHERE `uid` = #{uid} AND `status` = 1
+    </select>
+
 </mapper>

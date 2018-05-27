@@ -16,4 +16,16 @@
         WHERE c.ObjectId = #{objectId}
     </select>
 
+    <select id="listAllComment" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.CommentEntity">
+        SELECT * FROM `comment`
+        GROUP BY createTime
+        ORDER BY createTime DESC
+    </select>
+
+    <update id="updateCommentStatusByCid" parameterType="map">
+        UPDATE `comment`
+        SET `status` = #{status}
+        WHERE `id` = #{cid}
+    </update>
+
 </mapper>

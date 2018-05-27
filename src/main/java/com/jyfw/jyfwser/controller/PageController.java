@@ -9,11 +9,13 @@ import com.jyfw.jyfwser.pojo.vo.JuHeResult;
 import com.jyfw.jyfwser.pojo.vo.NewsVO;
 import com.jyfw.jyfwser.service.*;
 import com.jyfw.jyfwser.util.DateUtil;
+import com.jyfw.jyfwser.util.SHA256;
 import com.jyfw.jyfwser.util.http.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +46,9 @@ public class PageController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AdminService adminService;
 
     @GetMapping(value = "/")
     public ModelAndView getHomePage(HttpServletRequest request) {
@@ -77,17 +82,44 @@ public class PageController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/admin")
-    public ModelAndView getAdminPage(HttpServletRequest request) {
+    @GetMapping(value = "/signin")
+    public ModelAndView getsigninPage(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user) {
             modelAndView.addObject("user", user);
         }
-        modelAndView.setViewName("admin");
+        modelAndView.setViewName("signin");
         return modelAndView;
     }
+
+    @PostMapping(value = "/adminlogin")
+    public ModelAndView adminLogin(String adminName, String password,
+                                   String imgValidatorCode, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        //获取session中的imgValidatorCode
+        String sessionImgValidatorCode = (String) session.getAttribute("imgValidatorCode");
+        if (!sessionImgValidatorCode.equals(imgValidatorCode)) {
+            modelAndView.addObject("imgValidatorInfo", "错误的验证码");
+            modelAndView.setViewName("signin");
+        } else {
+            String sha256_pwd = SHA256.transformWithSHA256(password);
+            AdminEntity admin = adminService.adminLogin(adminName, sha256_pwd);
+            if (null == admin) {
+                modelAndView.addObject("loginInfo", "用户名或密码不正确！");
+                modelAndView.setViewName("signin");
+            } else {
+                List<DemandEntity> demands = demandService.listDemand();
+                modelAndView.addObject("demands", demands);
+                modelAndView.addObject("admin", admin);
+                session.setAttribute("admin", admin);
+                modelAndView.setViewName("adminpage");
+            }
+        }
+        return modelAndView;
+    }
+
 
     @GetMapping(value = "/demand")
     public ModelAndView getDemandPage(HttpServletRequest request) {

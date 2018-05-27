@@ -10,4 +10,8 @@ public interface CommentService {
 
     List<CommentEntity> listCommentByObject(Integer objectId);
 
+    List<CommentEntity> listComment();
+
+    void deleteComment(Integer cid);
+
 }

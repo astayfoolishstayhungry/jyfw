@@ -13,4 +13,10 @@ public interface TopicMapper {
 
     TopicEntity getTopicById(Integer topicId);
 
+    List<TopicEntity> listAllTopic();
+
+    void updateTopicStatusByTid(@Param("tid") Integer tid,@Param("status") Integer status);
+
+    List<TopicEntity> listTopicByUid(Integer uid);
+
 }

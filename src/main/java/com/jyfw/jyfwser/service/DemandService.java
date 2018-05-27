@@ -29,4 +29,10 @@ public interface DemandService {
 
     void updateDemandDoneByDemandId(Integer demandId);
 
+    void updateDemandCancelByDemandId(Integer demandId);
+
+    List<DemandEntity> listDemand();
+
+    List<DemandEntity> listDemandByUid(Integer uid);
+
 }

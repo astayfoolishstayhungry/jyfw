@@ -2,6 +2,7 @@ package com.jyfw.jyfwser.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.jyfw.jyfwser.mapper.TopicMapper;
+import com.jyfw.jyfwser.pojo.em.DemandStatusEnum;
 import com.jyfw.jyfwser.pojo.entity.TopicEntity;
 import com.jyfw.jyfwser.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,20 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public TopicEntity getTopicById(Integer topicId) {
         return topicMapper.getTopicById(topicId);
+    }
+
+    @Override
+    public List<TopicEntity> listAllTopic() {
+        return topicMapper.listAllTopic();
+    }
+
+    @Override
+    public void delteTopicByTid(Integer tid) {
+        topicMapper.updateTopicStatusByTid(tid, 2);
+    }
+
+    @Override
+    public List<TopicEntity> listTopicByUid(Integer uid) {
+        return topicMapper.listTopicByUid(uid);
     }
 }

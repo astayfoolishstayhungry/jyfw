@@ -34,5 +34,16 @@
         WHERE `id` = #{demandId}
     </update>
 
+    <select id="listDemand" resultType="com.jyfw.jyfwser.pojo.entity.DemandEntity">
+        SELECT * FROM `demand`
+        GROUP BY createTime
+        ORDER BY createTime DESC
+    </select>
+
+    <select id="listDemandByUid" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.DemandEntity">
+        SELECT * FROM `demand`
+        WHERE `uid` = #{uid} AND `status` = 1
+    </select>
+
 
 </mapper>
