@@ -126,19 +126,6 @@ public class AdminController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/adminerdelete")
-    public ModelAndView getAdminerDeletePage(HttpSession session) {
-        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
-        if(admin ==  null) {
-            return new ModelAndView("signin");
-        }
-        ModelAndView modelAndView = new ModelAndView();
-        List<AdminEntity> admins = adminService.listAdmin();
-        modelAndView.addObject("admins", admins);
-        modelAndView.setViewName("adminerdelete");
-        return modelAndView;
-    }
-
     @GetMapping(value = "/deleteAdmin")
     public ModelAndView deleteAdmin(Integer adminId) {
         adminService.deleteAdmin(adminId);
