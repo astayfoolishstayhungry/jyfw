@@ -75,7 +75,7 @@
                             <tr th:each="comment, commentStat : ${comments}">
                                 <td th:text="${comment.id}">1</td>
                                 <td th:text="${comment.content}"></td>
-                                <td th:text="${comment.status}"></td>
+                                <td id="status" th:text="${comment.status}"></td>
                                 <td>
                                     <a th:href="'deleteComment?CommentId='+${comment.id}">删除</a>
                                 </td>

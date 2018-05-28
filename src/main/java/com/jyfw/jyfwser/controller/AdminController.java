@@ -86,8 +86,6 @@ public class AdminController {
         return modelAndView;
     }
 
-
-
     @GetMapping(value = "/adminerdelete")
     public ModelAndView getAdminerdeletePage(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -96,7 +94,9 @@ public class AdminController {
         if(null != user) {
             modelAndView.addObject("user", user);
         }
-        modelAndView.setViewName("adminerdelete");
+        List<AdminEntity> admins = adminService.listAdmin();
+        modelAndView.addObject("admins", admins);
+        modelAndView.setViewName("redirect:/adminerdelete");
         return modelAndView;
     }
 
@@ -109,13 +109,13 @@ public class AdminController {
     @GetMapping(value = "deleteTopic")
     public ModelAndView delteTopicByTopicId(Integer topicId) {
         topicService.delteTopicByTid(topicId);
-        return new ModelAndView("admintopic");
+        return new ModelAndView("redirect:/admintopic");
     }
 
     @GetMapping(value = "deleteComment")
     public ModelAndView delteCommentByCommentId(Integer CommentId) {
         commentService.deleteComment(CommentId);
-        return new ModelAndView("admincomments");
+        return new ModelAndView("redirect:/admincomments");
     }
 
     @GetMapping(value = "/admineradd")
