@@ -165,8 +165,8 @@
                         pageStr = pageStr + '<p class="demand-item-title">需求发布人<span class="demand-hot-icon glyphicon glyphicon-hand-right"></span><span>：'+ item.username + '</span>';
                         pageStr = pageStr + '<span style="padding-left: 36px;">身份：<span style="font-size: 24px; color: #0615ff;">' + item.category + '</span></span></p>';
                         pageStr = pageStr + '<div class="row">';
-                        pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-object">' + item.dealObject + '</span><p class="demand-item-detail">合约标的</p></div>';
-                        pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-num">' + item.dealNum + '</span><p class="demand-item-detail">交易数量</p></div>';
+                        pageStr = pageStr + '<div class="col-md-3"><span class="demand-item-object">' + item.dealObject + '</span><p class="demand-item-detail">合约标的</p></div>';
+                        pageStr = pageStr + '<div class="col-md-1"><span class="demand-item-num">' + item.dealNum + '</span><p class="demand-item-detail">交易数量</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-price">' + item.dealPrice + '</span><p class="demand-item-detail">交易价格</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-num">' + timeExchange(item.dealTime) + '</span><p class="demand-item-detail">交易日期</p></div>';
                         pageStr = pageStr + '<div class="col-md-2"><span class="demand-item-object">' + demandStatusExchange(item.status) + '</span><p class="demand-item-detail">合约状态</p></div>';

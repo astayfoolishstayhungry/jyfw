@@ -76,8 +76,8 @@
 
 <div id="banners"></div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6" id="contact">
+    <div class="row" id="contact">
+        <div class="col-md-6">
             <div class="blockquote-box blockquote-info animated wow fadeInLeft clearfix">
                 <div class="square pull-left"><img src="images/team/member2.png" alt="Feature-img" height="80" width="100"/></div>
                 <a href="contactdetail.html"><h4>合约名称</h4></a>
@@ -125,11 +125,13 @@
                     loadPageInfo(result.data);
                     $(result.data.list).each(function (i, item) {
                         var pageStr = '';
-                        pageStr = pageStr + '<div class="blockquote-box blockquote-info animated wow fadeInLeft clearfix">';
-                        pageStr = pageStr + '<div class="square pull-left"><img src="images/team/member2.png" alt="Feature-img" height="80" width="100"/></div>';
+                        pageStr = pageStr + '<div class="col-md-6">';
+                        pageStr = pageStr + '<div class="blockquote-box blockquote-info animated wow fadeInUp clearfix">';
+                        pageStr = pageStr + '<div class="square pull-left"><img src="images/team/member1.png" alt="Feature-img" height="80" width="100"/></div>';
                         pageStr = pageStr + '<a href="/getcontact?cid='+ item.id +'"><h4>合约名称'+ item.dealObject +'</h4></a>';
                         pageStr = pageStr + '<p>买方: '+ item.sellername +' , 卖方: '+ item.buyername +'</p>';
                         pageStr = pageStr + '<p>交割日期: '+ timeExchange(item.dealTime) +'</p>';
+                        pageStr = pageStr + '</div>';
                         pageStr = pageStr + '</div>';
                         $("#contact").append(pageStr);
                     })

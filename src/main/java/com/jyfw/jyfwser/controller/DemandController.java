@@ -37,7 +37,7 @@ public class DemandController {
             modelAndView.addObject("errorInfo", "系统内部错误");
             modelAndView.setViewName("demandadd");
         }
-        modelAndView.setViewName("redirect:/demand");
+        modelAndView.setViewName("redirect:/mydemand");
         return modelAndView;
     }
 

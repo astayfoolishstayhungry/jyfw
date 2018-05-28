@@ -39,4 +39,13 @@ public class TopicController {
         return JsonResult.createBySuccess(pageInfo);
     }
 
+    @PostMapping(value = "/mytopics")
+    @ResponseBody
+    public JsonResult listTopic(HttpSession session) {
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        List<TopicEntity> topicEntities = topicService.listTopicByUid(user.getUid());
+        PageInfo pageInfo = new PageInfo(topicEntities);
+        return JsonResult.createBySuccess(pageInfo);
+    }
+
 }

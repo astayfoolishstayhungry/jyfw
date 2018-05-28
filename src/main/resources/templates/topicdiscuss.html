@@ -79,7 +79,7 @@
 <section class="container row">
     <div style="height:20px;" class="col-md-3"></div>
 
-    <div class="aui-content-up col-md-7">
+    <div class="aui-content-up col-md-9">
         <div class="aui-content-up-form">
             <h2 style="padding-bottom: 15px; padding-left: 230px;" class="jyfw-title">话题讨论</h2>
         </div>
@@ -112,7 +112,7 @@
                     写评论<em>*</em>
                 </label>
                 <div class="aui-form-input" style="padding-bottom: 15px;">
-                    <textarea class="form-control" id="comment-content" minlength="5"></textarea>
+                    <textarea class="form-control" style="height: " id="comment-content" minlength="5"></textarea>
                 </div>
             </div>
             <div class="aui-form-group-text">
@@ -125,7 +125,7 @@
         <!--</form>-->
 
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-0"></div>
 </section>
 
 
@@ -173,7 +173,7 @@
             success: function (result) {
                 if(result.success) {
                     alert("评论成功！");
-                    window.location.href = '/topic';
+                    window.location.href = '/topicdiscuss?topicId='+topicId;
                 }
             }
         })

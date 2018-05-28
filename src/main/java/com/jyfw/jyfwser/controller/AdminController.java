@@ -183,4 +183,10 @@ public class AdminController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/adminlogout")
+    public String adminLogout(HttpSession session) {
+        session.removeAttribute("admin");
+        return "/signin";
+    }
+
 }

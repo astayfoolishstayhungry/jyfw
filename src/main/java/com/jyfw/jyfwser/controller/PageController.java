@@ -300,7 +300,6 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
-
             modelAndView.addObject("user", user);
             modelAndView.setViewName("mytopic");
         }else {
@@ -315,7 +314,6 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
-
             modelAndView.addObject("user", user);
             modelAndView.setViewName("topic");
         }else {

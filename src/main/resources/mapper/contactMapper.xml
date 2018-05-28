@@ -6,7 +6,7 @@
       INSERT INTO `contract` (`sellerUid`, `sellername`, `sellerphone`, `buyerUid`, `buyername`, `buyerphone`, `dealTime`,
       `dealObject`,`dealNum`,`dealprice`,`status`,`desc`
       ) VALUES (
-      #{sellerUid},#{sellername},#{buyerUid},#{buyername},#{dealTime},#{dealObject},
+      #{sellerUid},#{sellername},#{sellerphone},#{buyerUid},#{buyername},#{buyerphone},#{dealTime},#{dealObject},
       #{dealNum},#{dealprice},#{status},#{desc}
       )
     </insert>

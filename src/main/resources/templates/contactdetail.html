@@ -103,12 +103,9 @@
             <p style="padding-left: 30px;">交割日期：<span th:text="${contact.dealTime}"></span></p>
             <p style="padding-left: 30px;">合约条款：<span id="desc" th:text="${contact.desc}"></span></p>
         </div>
-        <div class="aui-btn-default" style="text-align: center; padding-top: 30px;">
-            <button type="button" th:attr="data-demandId=''+${demandId}" class="btn btn-primary" id="pullContact">确定，生成合约</button>
-        </div>
 
         <div class="aui-btn-default" style="text-align: center; padding-top: 30px;">
-            <button class="aui-btn aui-btn-account">返回</button>
+            <a href="/contact" class="aui-btn aui-btn-account">返回</a>
         </div>
 
     </div>
