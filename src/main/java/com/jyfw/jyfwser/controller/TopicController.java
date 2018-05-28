@@ -28,7 +28,7 @@ public class TopicController {
         //0 过期， 1 正常
         topic.setStatus(1);
         Integer count = topicService.insertTopic(topic);
-        return new ModelAndView("topic");
+        return new ModelAndView("redirect:/topic");
     }
 
     @PostMapping(value = "/topics")

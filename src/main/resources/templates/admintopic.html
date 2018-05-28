@@ -46,7 +46,6 @@
                     <li><a href="/adminpage"><i class="glyphicon glyphicon-calendar"></i>需求信息在线监控</a></li>
                     <li class="current"><a href="/admintopic"><i class="glyphicon glyphicon-calendar"></i>话题信息在线监控</a></li>
                     <li><a href="/admincomments"><i class="glyphicon glyphicon-calendar"></i>评论信息在线监控</a></li>
-                    <li><a href="/adminusers"><i class="glyphicon glyphicon-calendar"></i>用户列表</a></li>
                     <li><a href="/adminerlist"><i class="glyphicon glyphicon-list"></i> 管理员列表</a></li>
                     <li><a href="/admineradd"><i class="glyphicon glyphicon-plus-sign"></i> 添加管理员</a></li>
                     <li><a href="/adminerdelete"><i class="glyphicon glyphicon-remove-sign"></i>删除管理员</a></li>
@@ -77,7 +76,8 @@
                                 <td th:text="${topic.id}">1</td>
                                 <td th:text="${topic.topicName}"></td>
                                 <td th:text="${topic.content}"></td>
-                                <td th:text="${topic.status}">1</td>
+                                <td th:if="${topic.status == 2}">违规，已删除</td>
+                                <td th:if="${topic.status == 1}">正常显示</td>
                                 <td>
                                     <a th:href="'deleteTopic?topicId='+${topic.id}">删除</a>
                                 </td>

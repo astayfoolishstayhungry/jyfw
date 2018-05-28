@@ -33,12 +33,12 @@ public class AdminController {
     private AdminService adminService;
 
     @GetMapping(value = "/adminpage")
-    public ModelAndView getAdminPage(HttpServletRequest request) {
+    public ModelAndView getAdminPage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity)session.getAttribute("user");
-        if(null != user) {
-            modelAndView.addObject("user", user);
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
         }
         List<DemandEntity> demands = demandService.listDemand();
         modelAndView.addObject("demands", demands);
@@ -47,9 +47,13 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admintopic")
-    public ModelAndView getAdmintopicPage(HttpServletRequest request) {
+    public ModelAndView getAdmintopicPage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-        HttpSession session = request.getSession();
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         List<TopicEntity> topics = topicService.listAllTopic();
         modelAndView.addObject("topics", topics);
         modelAndView.setViewName("admintopic");
@@ -57,29 +61,27 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admincomments")
-    public ModelAndView getAdmincommentsPage(HttpServletRequest request) {
+    public ModelAndView getAdmincommentsPage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         List<CommentEntity> comments = commentService.listComment();
         modelAndView.addObject("comments", comments);
         modelAndView.setViewName("admincomments");
         return modelAndView;
     }
 
-    @GetMapping(value = "/adminusers")
-    public ModelAndView getAdminusersPage(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity)session.getAttribute("user");
-        if(null != user) {
-            modelAndView.addObject("user", user);
-        }
-        modelAndView.setViewName("adminusers");
-        return modelAndView;
-    }
-
     @GetMapping(value = "/adminerlist")
-    public ModelAndView getAdminerlistPage(HttpServletRequest request) {
+    public ModelAndView getAdminerlistPage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         List<AdminEntity> admins = adminService.listAdmin();
         modelAndView.addObject("admins", admins);
         modelAndView.setViewName("adminerlist");
@@ -87,58 +89,98 @@ public class AdminController {
     }
 
     @GetMapping(value = "/adminerdelete")
-    public ModelAndView getAdminerdeletePage(HttpServletRequest request) {
+    public ModelAndView getAdminerdeletePage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity)session.getAttribute("user");
-        if(null != user) {
-            modelAndView.addObject("user", user);
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
         }
         List<AdminEntity> admins = adminService.listAdmin();
         modelAndView.addObject("admins", admins);
-        modelAndView.setViewName("redirect:/adminerdelete");
+        modelAndView.setViewName("adminerlist");
         return modelAndView;
     }
 
     @GetMapping(value = "deleteDemand")
-    public ModelAndView delteDemandByDemandId(Integer demandId) {
+    public ModelAndView delteDemandByDemandId(Integer demandId, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         demandService.updateDemandCancelByDemandId(demandId);
-        return new ModelAndView("redirect:/adminpage");
+        modelAndView.setViewName("redirect:/adminpage");
+        return modelAndView;
     }
 
     @GetMapping(value = "deleteTopic")
-    public ModelAndView delteTopicByTopicId(Integer topicId) {
+    public ModelAndView delteTopicByTopicId(Integer topicId, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         topicService.delteTopicByTid(topicId);
-        return new ModelAndView("redirect:/admintopic");
+        modelAndView.setViewName("redirect:/admintopic");
+        return modelAndView;
     }
 
     @GetMapping(value = "deleteComment")
-    public ModelAndView delteCommentByCommentId(Integer CommentId) {
+    public ModelAndView delteCommentByCommentId(Integer CommentId, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         commentService.deleteComment(CommentId);
-        return new ModelAndView("redirect:/admincomments");
+        modelAndView.setViewName("redirect:/admincomments");
+        return modelAndView;
     }
 
     @GetMapping(value = "/admineradd")
-    public ModelAndView getAdmineraddPage(Model model) {
+    public ModelAndView getAdmineraddPage(Model model, HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         model.addAttribute("admin", new AdminEntity());
         modelAndView.setViewName("admineradd");
         return modelAndView;
     }
 
     @GetMapping(value = "/deleteAdmin")
-    public ModelAndView deleteAdmin(Integer adminId) {
+    public ModelAndView deleteAdmin(Integer adminId, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        AdminEntity admin = (AdminEntity) session.getAttribute("admin");
+        if(null == admin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         adminService.deleteAdmin(adminId);
-        return new ModelAndView("adminerlist");
+        modelAndView.setViewName("redirect:/adminerlist");
+        return modelAndView;
     }
 
     @PostMapping(value = "/adminadd")
-    public ModelAndView insertAdmin(AdminEntity admin) {
+    public ModelAndView insertAdmin(AdminEntity admin, HttpSession session) {
+        AdminEntity currentAdmin = (AdminEntity) session.getAttribute("admin");
+        ModelAndView modelAndView = new ModelAndView();
+        if(null == currentAdmin) {
+            modelAndView.setViewName("signin");
+            return modelAndView;
+        }
         String sha256_password = SHA256.transformWithSHA256(admin.getPassword());
         admin.setPassword(sha256_password);
         admin.setStatus(1);
         adminService.insertAdmin(admin);
-        return new ModelAndView("adminerlist");
+        modelAndView.setViewName("adminerlist");
+        return modelAndView;
     }
 
 }

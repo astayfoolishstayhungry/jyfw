@@ -13,7 +13,7 @@
     <select id="listTopic" parameterType="string" resultType="com.jyfw.jyfwser.pojo.entity.TopicEntity">
         SELECT t.*, u.name FROM `topic` t LEFT JOIN `user` u
         ON t.uid = u.uid
-        WHERE 1 = 1
+        WHERE 1 = 1 AND t.`status` = 1
         <if test="topicName != null and topicName != ''">
             AND topicName LIKE CONCAT('%', #{topicName}, '%')
         </if>

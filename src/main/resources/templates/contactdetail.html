@@ -77,36 +77,42 @@
 
 
 <section class="container row">
-    <div style="height:20px;" class="col-md-3"></div>
+    <div style="height:20px;" class="col-md-4"></div>
     <div class="aui-content-up col-md-7">
-        <form >
-            <div class="aui-content-up-form">
-                <h2 style="padding-bottom: 15px; padding-left: 230px;" class="jyfw-title">合约详情</h2>
-            </div>
+        <div class="aui-content-up-form">
+            <h2 style="padding-bottom: 15px; padding-left: 230px;" class="jyfw-title">合约详情</h2>
+        </div>
 
-            <div class="row" style="background: #fff; padding-bottom: 30px; border: 1px solid #ccc;">
-                <h4 style="text-align: center; padding-bottom: 15px; padding-top: 10px;">合约名称</h4>
-                <div class="col-md-6" style="padding-bottom: 30px;">
-                    买方：
-                </div>
-                <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
-                    卖方：
-                </div>
-                <p style="padding-left: 30px;">生成日期：（需求匹配成功的日期）</p>
-                <p style="padding-left: 30px;">合约标的：</p>
-                <p style="padding-left: 30px;">交易数量：</p>
-                <p style="padding-left: 30px;">交易总价：</p>
-                <p style="padding-left: 30px;">交割日期：</p>
-                <p style="padding-left: 30px;">合约状态：</p>
+        <div class="row" style="background: #fff; padding-bottom: 30px; border: 1px solid #ccc;">
+            <h3 style="text-align: center; padding-bottom: 15px; padding-top: 10px;"><span th:text="${contact.dealObject}"></span>-远期合约</h3>
+            <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
+                买方：<span th:text="${contact.buyername}"></span>
             </div>
+            <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
+                卖方：<span th:text="${contact.sellername}"></span>
+            </div>
+            <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
+                买方电话：<span th:text="${contact.buyername}"></span>
+            </div>
+            <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
+                卖方电话：<span th:text="${contact.sellername}"></span>
+            </div>
+            <p style="padding-left: 30px;">合约标的：<span id="dealobject" th:text="${contact.dealObject}"></span></p>
+            <p style="padding-left: 30px;">交易数量：<span id="dealnum" th:text="${contact.dealNum}"></span></p>
+            <p style="padding-left: 30px;">交易总价：<span id="dealprice" th:text="${contact.dealprice}"></span></p>
+            <p style="padding-left: 30px;">交割日期：<span th:text="${contact.dealTime}"></span></p>
+            <p style="padding-left: 30px;">合约条款：<span id="desc" th:text="${contact.desc}"></span></p>
+        </div>
+        <div class="aui-btn-default" style="text-align: center; padding-top: 30px;">
+            <button type="button" th:attr="data-demandId=''+${demandId}" class="btn btn-primary" id="pullContact">确定，生成合约</button>
+        </div>
 
-            <div class="aui-btn-default" style="text-align: center; padding-top: 30px;">
-                <button class="aui-btn aui-btn-account">返回</button>
-            </div>
-        </form>
+        <div class="aui-btn-default" style="text-align: center; padding-top: 30px;">
+            <button class="aui-btn aui-btn-account">返回</button>
+        </div>
 
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
 </section>
 
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
@@ -137,6 +143,7 @@
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
+<script src="js/app.js"></script>
 <script>
     new WOW().init();
 </script>

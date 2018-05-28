@@ -17,4 +17,8 @@ public interface ContactMapper {
 
     List<ContactEntity> listContactLimitSix();
 
+    List<ContactEntity> listCompleteContact();
+
+    ContactEntity getContactByCid(Integer cid);
+
 }

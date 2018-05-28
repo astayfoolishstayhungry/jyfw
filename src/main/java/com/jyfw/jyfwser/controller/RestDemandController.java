@@ -41,20 +41,22 @@ public class RestDemandController {
             }
         }
         List<DemandVO> demandVOS = new ArrayList<>();
-        for (DemandEntity demand : demands) {
-            DemandVO demandVO = new DemandVO();
-            UserEntity user = userService.getUserByDemandId(demand.getId());
-            demandVO.setId(demand.getId());
-            demandVO.setUid(demand.getUid());
-            demandVO.setUsername(user.getName());
-            demandVO.setCategory(demand.getCategory());
-            demandVO.setDealNum(demand.getDealNum());
-            demandVO.setDealPrice(demand.getDealPrice());
-            demandVO.setStatus(demand.getStatus());
-            demandVO.setDealTimeFormat(demand.getDealTimeFormat());
-            demandVO.setDealObject(demand.getDealObject());
-            demandVO.setDealTime(demand.getDealTime());
-            demandVOS.add(demandVO);
+        if(demands != null) {
+            for (DemandEntity demand : demands) {
+                DemandVO demandVO = new DemandVO();
+                UserEntity user = userService.getUserByDemandId(demand.getId());
+                demandVO.setId(demand.getId());
+                demandVO.setUid(demand.getUid());
+                demandVO.setUsername(user.getName());
+                demandVO.setCategory(demand.getCategory());
+                demandVO.setDealNum(demand.getDealNum());
+                demandVO.setDealPrice(demand.getDealPrice());
+                demandVO.setStatus(demand.getStatus());
+                demandVO.setDealTimeFormat(demand.getDealTimeFormat());
+                demandVO.setDealObject(demand.getDealObject());
+                demandVO.setDealTime(demand.getDealTime());
+                demandVOS.add(demandVO);
+            }
         }
         PageInfo pageInfo = new PageInfo(demandVOS);
         return JsonResult.createBySuccess(pageInfo);

@@ -107,7 +107,7 @@ public class PageController {
             String sha256_pwd = SHA256.transformWithSHA256(password);
             AdminEntity admin = adminService.adminLogin(adminName, sha256_pwd);
             if (null == admin) {
-                modelAndView.addObject("loginInfo", "用户名或密码不正确！");
+                modelAndView.addObject("errorInfo", "用户名或密码不正确！");
                 modelAndView.setViewName("signin");
             } else {
                 List<DemandEntity> demands = demandService.listDemand();
@@ -200,12 +200,12 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView();
         UserEntity user = (UserEntity)session.getAttribute("user");
         if(null != user ) {
-            List<DemandEntity> savedDemands = demandService.listDemandByStatus(null,null, DemandStatusEnum.UNVALIDATOR.getCode(), null,null);
-            for (DemandEntity demand : savedDemands) {
+            List<DemandEntity> myDemands = demandService.listDemandByUid(user.getUid());
+            for (DemandEntity demand : myDemands) {
                 demand.setDealTimeFormat(DateUtil.parseDateToStr(demand.getDealTime(), DateUtil.DATE_TIME_FORMAT_YYYYMMDD));
             }
             //TODO 列举其他状态的需求
-            modelAndView.addObject("savedDemands", savedDemands);
+            modelAndView.addObject("myDemands", myDemands);
             modelAndView.addObject("user", user);
             modelAndView.setViewName("mydemand");
         }else {

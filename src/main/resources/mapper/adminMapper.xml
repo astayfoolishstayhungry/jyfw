@@ -13,7 +13,7 @@
     </select>
 
     <select id="listAdmin" resultType="com.jyfw.jyfwser.pojo.entity.AdminEntity">
-        SELECT * FROM `admin`
+        SELECT * FROM `admin` WHERE `status` = 1
     </select>
 
     <update id="deleteAdmin" parameterType="integer">

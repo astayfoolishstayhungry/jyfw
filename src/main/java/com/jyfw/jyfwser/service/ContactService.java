@@ -17,4 +17,8 @@ public interface ContactService {
 
     List<ContactEntity> listContactLimitSix();
 
+    List<ContactEntity> listCompleteContact(Integer page, Integer count);
+
+    ContactEntity getContactByCid(Integer cid);
+
 }

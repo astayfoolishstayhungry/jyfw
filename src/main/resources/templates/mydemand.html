@@ -78,16 +78,16 @@
 <div class="container text-center">
 
     <div class="container" id="demand-item">
-        <div class="demand-item-list" style="border: 1px; color: #2f2f2f;">
+        <div class="demand-item-list" style="border: 1px; color: #2f2f2f;" th:each="demand, demandStat : ${myDemands}">
             <p class="demand-item-title" style="text-align: left;">
-                <span style="padding-left: 66px; ">身份：<span style="font-size: 24px; color: red;">卖方</span></span>
+                <span style="padding-left: 66px; ">身份：<span style="font-size: 24px; color: red;" th:text="${demand.category}"></span></span>
             </p>
             <div class="row">
-                <div class="col-md-2"><span class="demand-item-object">你好</span><p class="demand-item-detail">合约标的</p></div>
-                <div class="col-md-2"><span class="demand-item-num">你好</span><p class="demand-item-detail">交易数量</p></div>
-                <div class="col-md-2"><span class="demand-item-price">你好</span><p class="demand-item-detail">交易价格</p></div>
-                <div class="col-md-2"><span class="demand-item-num">你好</span><p class="demand-item-detail">交易日期</p></div>
-                <div class="col-md-2"><span class="demand-item-object">你好</span><p class="demand-item-detail">合约状态</p></div>
+                <div class="col-md-2"><span class="demand-item-object" th:text="${demand.dealObject}"></span><p class="demand-item-detail">合约标的</p></div>
+                <div class="col-md-2"><span class="demand-item-num" th:text="${demand.dealNum}"></span><p class="demand-item-detail">交易数量</p></div>
+                <div class="col-md-2"><span class="demand-item-price" th:text="${demand.dealPrice}"></span><p class="demand-item-detail">交易价格</p></div>
+                <div class="col-md-2"><span class="demand-item-num date" th:attr="data-createtime=''+${demand.createTime}"></span><p class="demand-item-detail">交易日期</p></div>
+                <div class="col-md-2"><span class="demand-item-object" th:if="${demand.status == 1}">待匹配</span><p class="demand-item-detail">合约状态</p></div>
                 <div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary">编辑</button></a></div>
             </div>
         </div>
@@ -104,8 +104,15 @@
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/paper-collapse.min.js"></script>
 <script type="text/javascript">
+
+    $(function () {
+        var date = $(".date").attr("data-createtime");
+        $(".date").html(timeExchange(date));
+    })
+
     new WOW().init();
     $('.collapse-card').paperCollapse();
 </script>

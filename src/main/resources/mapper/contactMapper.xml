@@ -33,4 +33,15 @@
         LIMIT 6
     </select>
 
+    <select id="listCompleteContact" resultType="com.jyfw.jyfwser.pojo.entity.ContactEntity">
+        SELECT *
+        FROM `contract`
+        GROUP BY `createTime`
+        ORDER BY `createTime` DESC
+    </select>
+
+    <select id="getContactByCid" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.ContactEntity">
+        SELECT * FROM `contract` WHERE `id` = #{cid}
+    </select>
+
 </mapper>
