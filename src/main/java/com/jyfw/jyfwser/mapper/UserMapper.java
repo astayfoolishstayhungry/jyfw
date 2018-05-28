@@ -32,4 +32,6 @@ public interface UserMapper {
 
     Integer getContactAmountSum();
 
+    UserEntity getUserByUid(Integer uid);
+
 }

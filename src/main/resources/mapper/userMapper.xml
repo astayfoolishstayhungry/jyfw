@@ -29,4 +29,8 @@
     <select id="getContactAmountSum" resultType="integer">
         SELECT SUM(`dealPrice`) FROM `contract`
     </select>
+
+    <select id="getUserByUid" parameterType="integer" resultType="com.jyfw.jyfwser.pojo.entity.UserEntity">
+        SELECT * FROM `user` WHERE `uid` = #{uid};
+    </select>
 </mapper>

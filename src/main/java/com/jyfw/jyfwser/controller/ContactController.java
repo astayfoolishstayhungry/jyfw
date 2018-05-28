@@ -6,6 +6,7 @@ import com.jyfw.jyfwser.pojo.entity.ContactEntity;
 import com.jyfw.jyfwser.pojo.entity.UserEntity;
 import com.jyfw.jyfwser.service.ContactService;
 import com.jyfw.jyfwser.service.DemandService;
+import com.jyfw.jyfwser.service.UserService;
 import com.jyfw.jyfwser.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ import java.util.List;
 public class ContactController {
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private ContactService contactService;
 
     @Autowired
@@ -38,17 +42,22 @@ public class ContactController {
                                     Integer demandId, HttpSession session) {
         UserEntity user = (UserEntity) session.getAttribute("user");
         ContactEntity contact = new ContactEntity();
+        UserEntity existsUser = userService.getUserByUid(existsUid);
         //根据双方角色调整信息
         if(category == "卖方") {
             contact.setSellername(existsname);
             contact.setSellerUid(existsUid);
+            contact.setSellerphone(existsUser.getPhone());
             contact.setBuyername(user.getName());
             contact.setBuyerUid(myuid);
+            contact.setBuyerphone(user.getPhone());
         }else {
             contact.setBuyerUid(existsUid);
             contact.setBuyername(existsname);
+            contact.setBuyerphone(existsUser.getPhone());
             contact.setSellerUid(user.getUid());
             contact.setSellername(user.getName());
+            contact.setSellerphone(user.getPhone());
         }
         contact.setDealObject(dealobject);
         contact.setDealNum(dealnum);

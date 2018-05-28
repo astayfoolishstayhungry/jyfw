@@ -7,6 +7,8 @@ import com.jyfw.jyfwser.service.DemandService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
@@ -36,6 +38,20 @@ public class DemandController {
             modelAndView.setViewName("demandadd");
         }
         modelAndView.setViewName("redirect:/demand");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/userdeletedemand")
+    public ModelAndView deleteDemandByUser(Integer demandId, HttpSession session, Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if(user == null) {
+            model.addAttribute("user", new UserEntity());
+            return new ModelAndView("login");
+        }
+        demandService.updateDemandCancelByDemandId(demandId);
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("redirect:/mydemand");
         return modelAndView;
     }
 

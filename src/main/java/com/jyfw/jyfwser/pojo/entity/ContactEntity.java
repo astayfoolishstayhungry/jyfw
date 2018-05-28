@@ -15,8 +15,10 @@ public class ContactEntity {
     private Integer     id;
     private Integer     sellerUid;
     private String      sellername;
+    private String      sellerphone;
     private Integer     buyerUid;
     private String      buyername;
+    private String      buyerphone;
     private String      dealTime;
     private String      dealObject;
     private Integer     dealNum;

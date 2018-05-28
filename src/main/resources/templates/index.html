@@ -80,7 +80,7 @@
                     <div class="item active">
                         <img src="images/slider/sliderm1.jpg" height="400" alt="Image of first carousel"/>
                         <div class="carousel-caption">
-                            <a href="#" class="button button-glow button-border button-rounded button-primary carousel-title hidden-xs">Top10 大价值期货</a>
+                            <a href="/demand" class="button button-glow button-border button-rounded button-primary carousel-title hidden-xs">大价值期货</a>
                             <p class="carousel-body">精选 精挑</p>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                     <div class="item">
                         <img src="images/slider/sliderm2.jpg" height="400" alt="Image of third carousel"/>
                         <div class="carousel-caption">
-                            <a href="#" class="button button-glow button-border button-rounded button-primary carousel-title hidden-xs">大事件</a>
+                            <a href="/news" class="button button-glow button-border button-rounded button-primary carousel-title hidden-xs">大事件</a>
                             <p class="carousel-body">每天十分钟，陪你一起读新闻</p>
                         </div>
                     </div>
@@ -135,17 +135,17 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" th:each="contact, contactStat : ${contacts}">
                 <div class="services-group wow animated fadeInLeft" data-wow-offset="40">
                     <h4 class="services-title"><span th:text="${contact.dealObject}"></span>-远期合约</h4>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <p class="services-body">买方：<span th:text="${contact.buyername}"></span></p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
+                        <p class="services-body">买方电话：<span th:text="${contact.buyerphone}"></span></p>
+                    </div>
+                    <div class="col-md-4">
                         <p class="services-body">卖方：<span th:text="${contact.sellername}"></span></p>
                     </div>
-                    <div class="col-md-6">
-                        <p class="services-body">买方电话：<span th:text="${contact.buyername}"></span></p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="services-body">卖方电话：<span th:text="${contact.sellername}"></span></p>
+                    <div class="col-md-8">
+                        <p class="services-body">卖方电话：<span th:text="${contact.sellerphone}"></span></p>
                     </div>
                     <p style="text-align: left; padding-left: 30px;">合约标的：<span th:text="${contact.dealObject}"></span></p>
                     <p style="text-align: left; padding-left: 30px;">交易数量：<span th:text="${contact.dealNum}"></span></p>

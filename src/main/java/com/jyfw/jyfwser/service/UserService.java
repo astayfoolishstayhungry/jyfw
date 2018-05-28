@@ -31,4 +31,6 @@ public interface UserService {
 
     Integer getContactAmountSum();
 
+    UserEntity getUserByUid(Integer uid);
+
 }

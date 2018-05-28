@@ -46,4 +46,9 @@ public class UserServiceImpl implements UserService {
     public Integer getContactAmountSum() {
         return userMapper.getContactAmountSum();
     }
+
+    @Override
+    public UserEntity getUserByUid(Integer uid) {
+        return userMapper.getUserByUid(uid);
+    }
 }

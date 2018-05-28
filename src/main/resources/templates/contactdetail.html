@@ -85,17 +85,17 @@
 
         <div class="row" style="background: #fff; padding-bottom: 30px; border: 1px solid #ccc;">
             <h3 style="text-align: center; padding-bottom: 15px; padding-top: 10px;"><span th:text="${contact.dealObject}"></span>-远期合约</h3>
-            <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
+            <div class="col-md-4" style="padding-bottom: 30px; padding-left: 30px;">
                 买方：<span th:text="${contact.buyername}"></span>
             </div>
-            <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
+            <div class="col-md-8" style="padding-bottom: 30px; padding-left: 30px;">
+                买方电话：<span th:text="${contact.buyerphone}"></span>
+            </div>
+            <div class="col-md-4" style="padding-bottom: 30px; padding-left: 30px;">
                 卖方：<span th:text="${contact.sellername}"></span>
             </div>
-            <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
-                买方电话：<span th:text="${contact.buyername}"></span>
-            </div>
-            <div class="col-md-6" style="padding-bottom: 30px; padding-left: 30px;">
-                卖方电话：<span th:text="${contact.sellername}"></span>
+            <div class="col-md-8" style="padding-bottom: 30px; padding-left: 30px;">
+                卖方电话：<span th:text="${contact.sellerphone}"></span>
             </div>
             <p style="padding-left: 30px;">合约标的：<span id="dealobject" th:text="${contact.dealObject}"></span></p>
             <p style="padding-left: 30px;">交易数量：<span id="dealnum" th:text="${contact.dealNum}"></span></p>

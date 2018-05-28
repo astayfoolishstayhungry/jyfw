@@ -88,7 +88,7 @@
                 <div class="col-md-2"><span class="demand-item-price" th:text="${demand.dealPrice}"></span><p class="demand-item-detail">交易价格</p></div>
                 <div class="col-md-2"><span class="demand-item-num date" th:attr="data-createtime=''+${demand.createTime}"></span><p class="demand-item-detail">交易日期</p></div>
                 <div class="col-md-2"><span class="demand-item-object" th:if="${demand.status == 1}">待匹配</span><p class="demand-item-detail">合约状态</p></div>
-                <div class="col-md-2"><a href="#" class="jyfw-section"><button type="button" class="btn btn-primary">编辑</button></a></div>
+                <div class="col-md-2"><a th:attr="href='/userdeletedemand?demandId='+${demand.id}" class="jyfw-section"><button type="button" class="btn btn-warning">删除</button></a></div>
             </div>
         </div>
     </div>

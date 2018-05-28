@@ -3,7 +3,7 @@
 <mapper namespace="com.jyfw.jyfwser.mapper.ContactMapper">
 
     <insert id="insertContract" parameterType="com.jyfw.jyfwser.pojo.entity.ContactEntity">
-      INSERT INTO `contract` (`sellerUid`, `sellername`, `buyerUid`,`buyername`,`dealTime`,
+      INSERT INTO `contract` (`sellerUid`, `sellername`, `sellerphone`, `buyerUid`, `buyername`, `buyerphone`, `dealTime`,
       `dealObject`,`dealNum`,`dealprice`,`status`,`desc`
       ) VALUES (
       #{sellerUid},#{sellername},#{buyerUid},#{buyername},#{dealTime},#{dealObject},
